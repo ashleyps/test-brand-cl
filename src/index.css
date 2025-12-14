@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Raleway:wght@700;900&display=swap');
+
+@theme {
+  --font-sans: 'Jost', sans-serif;
+  --font-display: 'Raleway', sans-serif;
+
+  --color-brand-orange: #ff6600;
+  --color-brand-dark: #202a30;
+  --color-brand-gray: #3e3f42;
+  --color-brand-gray-light: #77828c;
+  --color-brand-white: #fcfcfc;
+  --color-brand-teal: #43aeba;
+  --color-brand-teal-dark: #043345;
+  --color-brand-blue-muted: #344c61;
+}
+
+/* Custom Base Styles */
+body {
+  background-color: var(--color-brand-dark);
+  color: var(--color-brand-white);
+  font-family: var(--font-sans);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
