@@ -130,6 +130,9 @@ export const LeadForm = ({ answers, totalScore, onComplete }: LeadFormProps) => 
                         </>
                     )}
                 </button>
+                <p className="text-[10px] text-white/40 leading-tight text-center mt-4">
+                    Al registrarte, aceptas recibir comunicaciones por correo electrónico de nuestra parte, las cuales pueden ser enviadas mediante tecnología automatizada. Tu información es confidencial y no vendemos tus datos personales a terceros. Puedes darte de baja en cualquier momento haciendo clic en el enlace al final de nuestros correos. Al enviar este formulario, aceptas nuestra Política de Privacidad y Términos y Condiciones.
+                </p>
             </form>
         </motion.div>
     );

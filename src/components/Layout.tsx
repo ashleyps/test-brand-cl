@@ -43,9 +43,10 @@ export const Layout = ({ children }: LayoutProps) => {
 
             {/* Footer */}
             <footer className="relative z-10 w-full py-6 text-center text-xs text-white/30">
-                <p>© {new Date().getFullYear()} Capitán Logo. Todos los derechos reservados.</p>
-                <div className="mt-2 space-x-4">
-                    {/* Add links if needed */}
+                <p className="text-sm opacity-60">© {new Date().getFullYear()} Capitán Logo. Todos los derechos reservados.</p>
+                <div className="mt-4 flex justify-center space-x-6 text-sm opacity-50">
+                    <a href="https://capitanlogo.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Términos y Condiciones</a>
+                    <a href="https://capitanlogo.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Política de Privacidad</a>
                 </div>
             </footer>
         </div>
