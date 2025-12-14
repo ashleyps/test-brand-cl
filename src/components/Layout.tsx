@@ -43,12 +43,12 @@ export const Layout = ({ children }: LayoutProps) => {
 
             {/* Footer */}
             <footer className="relative z-10 w-full py-6 text-center text-xs text-white/30">
-                <div className="flex justify-center items-center gap-2 text-sm opacity-50 mb-2">
-                    <a href="https://capitanlogo.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Política de Privacidad</a>
+                <div className="flex justify-center items-center gap-2 text-sm text-white/60 mb-2">
+                    <a href="https://capitanlogo.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand-teal)] transition-colors">Política de Privacidad</a>
                     <span className="opacity-50">|</span>
-                    <a href="https://capitanlogo.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand-teal)] transition-colors text-[var(--color-brand-teal)]">Términos y Condiciones</a>
+                    <a href="https://capitanlogo.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand-teal)] transition-colors">Términos y Condiciones</a>
                 </div>
-                <p className="text-xs opacity-40">© {new Date().getFullYear()} Capitán Logo. Connecta, Conquista y Crece.</p>
+                <p className="text-xs text-white/50">© {new Date().getFullYear()} Capitán Logo. Connecta, Conquista y Crece.</p>
             </footer>
         </div>
     );
