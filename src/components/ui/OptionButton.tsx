@@ -26,7 +26,7 @@ export const OptionButton = ({ label, iconName, selected, onClick }: OptionButto
         p-3 rounded-full flex-shrink-0 transition-colors
         ${selected
                     ? 'bg-white text-[var(--color-brand-orange)]'
-                    : 'bg-white/10 text-[var(--color-brand-teal)] group-hover:text-[var(--color-brand-teal-light)]'
+                    : 'bg-white/10 text-[var(--color-brand-teal)] group-hover:text-[var(--color-brand-orange)] group-hover:bg-white'
                 }
       `}>
                 <DynamicIcon name={iconName} size={24} />

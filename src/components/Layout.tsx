@@ -33,7 +33,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
             {/* Header */}
             <header className="relative z-20 flex items-center justify-center py-6 px-4">
-                <img src="/capitanlogo-logo.svg" alt="Capitán Logo" className="h-10 md:h-12 drop-shadow-lg" />
+                <img src="/capitanlogo-logo.svg" alt="Capitán Logo" className="h-12 md:h-16 drop-shadow-lg" />
             </header>
 
             {/* Main Content */}

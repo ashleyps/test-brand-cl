@@ -60,15 +60,11 @@ export const LeadForm = ({ answers, totalScore, onComplete }: LeadFormProps) => 
             // Mock network request or valid logging for MVP
             console.log('Sending to n8n:', payload);
 
-            // Simulating delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // TODO: Replace with fetch
-            // await fetch('https://YOUR_N8N_WEBHOOK_URL', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify(payload)
-            // });
+            await fetch('https://appn8n.clicktactico.com/webhook/diagnostico', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
 
             onComplete();
         } catch (err) {
