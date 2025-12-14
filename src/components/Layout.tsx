@@ -37,7 +37,7 @@ export const Layout = ({ children }: LayoutProps) => {
             </header>
 
             {/* Main Content */}
-            <main className="relative z-10 w-full max-w-2xl mx-auto px-4 py-4 flex flex-col flex-grow justify-center">
+            <main className="relative z-10 w-full max-w-2xl mx-auto px-4 py-4 flex flex-col flex-grow justify-center items-center">
                 {children}
             </main>
 
