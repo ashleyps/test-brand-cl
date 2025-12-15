@@ -186,16 +186,6 @@ export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
                             <div style={{ width: "100%", height: "100%", overflow: "scroll" }} id="my-cal-inline-sesion-guia-digital"></div>
                         </div>
 
-                        <div className="mt-8">
-                            <a
-                                href="https://capitanlogo.com/guia-de-marca-digital/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block px-6 py-3 bg-transparent border border-white/30 text-white font-medium rounded-xl hover:bg-white/10 transition-colors text-sm"
-                            >
-                                ¿Prefieres leer primero? Descarga la 'Ruta de Navegación'
-                            </a>
-                        </div>
                     </div>
                 ) : (
                     <>
