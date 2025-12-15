@@ -78,7 +78,7 @@ export const useQuiz = () => {
             window.history.pushState({ step: state.currentStep }, "");
         }
 
-        const handlePopState = (event: PopStateEvent) => {
+        const handlePopState = () => {
             // Check if we can go back internally
             if (state.currentStep > 1) {
                 // Prevent browser from leaving (conceptually), just update react state
