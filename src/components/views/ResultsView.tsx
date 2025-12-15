@@ -1,20 +1,29 @@
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { QUESTIONS } from '../../data/quizData';
+import { X } from 'lucide-react';
 
 interface ResultsViewProps {
     score: number;
     answers: Record<string, string>;
+    userInfo: { name: string; email: string } | null;
 }
 
-export const ResultsView = ({ score, answers }: ResultsViewProps) => {
+declare global {
+    interface Window {
+        Cal: any;
+    }
+}
+
+export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
+    const [showModal, setShowModal] = useState(score > 40);
+
     // Determine Tier
     let tier = '';
     let message = '';
-    let ctaText = '';
-    let ctaLink = '#'; // Placeholder
+    const showCalendar = score > 40;
 
     const q1Id = answers['q1'];
-    // Get Q1 Label
     const q1Question = QUESTIONS.find(q => q.id === 'q1');
     const q1Option = q1Question?.options.find(o => o.id === q1Id);
     const mainObstacle = q1Option?.label || 'tu estrategia digital';
@@ -22,54 +31,195 @@ export const ResultsView = ({ score, answers }: ResultsViewProps) => {
     if (score <= 40) {
         tier = 'El Explorador';
         message = `Tienes una base, pero necesitas enfocarte en los fundamentos. Te enviamos la guía completa a tu email.`;
-        ctaText = "Descarga la 'Ruta de Navegación'";
     } else if (score <= 80) {
         tier = 'Navegante Comprometido';
-        message = `Estás cerca de zarpar, pero tu mayor reto es ${mainObstacle}.`;
-        ctaText = "Agenda una Reunión de 15 Minutos";
-        ctaLink = "https://calendly.com/placeholder/15min";
+        message = `Estás cerca de zarpar, pero tu mayor reto es ${mainObstacle}. Agéndate para revisar tu caso puntual.`;
     } else {
         tier = 'Capitán Listo para Invertir';
-        message = `¡Felicidades, Capitán! Tu diagnóstico es de ALTA PRIORIDAD. Vimos que tu reto principal es ${mainObstacle}.`;
-        ctaText = "Agenda Reunión Estratégica (30 Min)";
-        ctaLink = "https://calendly.com/placeholder/30min";
+        message = `¡Felicidades, Capitán! Tu diagnóstico es de ALTA PRIORIDAD. Tu reto principal es ${mainObstacle}, vamos a solucionarlo.`;
     }
 
+    // Initialize Cal.com logic
+    useEffect(() => {
+        if (!showCalendar) return;
+
+        (function (C: any, A: string, L: string) {
+            let p = function (a: any, ar: any) { a.q.push(ar); };
+            let d = C.document;
+            C.Cal = C.Cal || function () {
+                let cal = C.Cal;
+                let ar = arguments;
+                if (!cal.loaded) {
+                    cal.ns = {};
+                    cal.q = cal.q || [];
+                    d.head.appendChild(d.createElement("script")).src = A;
+                    cal.loaded = true;
+                }
+                if (ar[0] === L) {
+                    const api = function () { p(api, arguments); };
+                    const namespace = ar[1];
+                    api.q = api.q || [];
+                    if (typeof namespace === "string") {
+                        cal.ns[namespace] = cal.ns[namespace] || api;
+                        p(cal.ns[namespace], ar);
+                        p(cal, ["initNamespace", namespace]);
+                    } else p(cal, ar);
+                    return;
+                }
+                p(cal, ar);
+            };
+        })(window, "https://app.cal.com/embed/embed.js", "init");
+
+        window.Cal("init", "sesion-guia-digital", { origin: "https://app.cal.com" });
+
+        // Construct dynamic link with name/email if available
+        let calLinkBase = "capitanlogo/sesion-guia-digital";
+        if (userInfo) {
+            calLinkBase += `?name=${encodeURIComponent(userInfo.name)}&email=${encodeURIComponent(userInfo.email)}`;
+        }
+
+        window.Cal.ns["sesion-guia-digital"]("inline", {
+            elementOrSelector: "#my-cal-inline-sesion-guia-digital",
+            config: { "layout": "month_view", "theme": "light" },
+            calLink: calLinkBase,
+        });
+
+        window.Cal.ns["sesion-guia-digital"]("ui", {
+            "theme": "light",
+            "cssVarsPerTheme": { "light": { "cal-brand": "#ff6600" } },
+            "hideEventTypeDetails": true,
+            "layout": "month_view"
+        });
+
+        // Event listener for booking success
+        const handleMessage = (event: MessageEvent) => {
+            if (event.origin === "https://app.cal.com" || event.origin === "https://cal.com") {
+                if (event.data.type === "bookingSuccessful" ||
+                    event.data.event === "booking:successful" ||
+                    (event.data.event && event.data.event.includes("scheduled"))) {
+
+                    console.log("Reserva detectada en Cal.com, redirigiendo...");
+                    setTimeout(() => {
+                        window.location.href = "https://lp.capitanlogo.com/muchas-gracias/";
+                    }, 4000);
+                }
+            }
+        };
+
+        window.addEventListener("message", handleMessage);
+        return () => window.removeEventListener("message", handleMessage);
+
+    }, [showCalendar, userInfo]);
+
+
     return (
-        <motion.div
-            className="w-full text-center space-y-8"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-        >
-            <div className="space-y-2">
-                <h3 className="text-[var(--color-brand-teal)] text-xl uppercase tracking-widest font-bold">Tu Resultado</h3>
-                <h1 className="text-4xl md:text-5xl font-extrabold text-white">{tier}</h1>
-                <div className="inline-block px-6 py-2 rounded-full bg-white/10 border border-white/20 mt-4">
-                    <span className="text-2xl font-bold text-[var(--color-brand-orange)]">{score}/100</span> <span className="text-sm opacity-70">Puntos</span>
-                </div>
-            </div>
+        <>
+            <AnimatePresence>
+                {showModal && (
+                    <motion.div
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <motion.div
+                            className="bg-[#202a30] text-gray-200 p-8 rounded-3xl max-w-lg w-full relative shadow-2xl border border-[var(--color-brand-orange)]"
+                            initial={{ scale: 0.9, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.9, y: 20 }}
+                        >
+                            <button
+                                onClick={() => setShowModal(false)}
+                                className="absolute top-4 right-4 text-white/30 hover:text-white transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
 
-            <div className="bg-white/5 p-6 rounded-2xl border border-white/10 max-w-lg mx-auto">
-                <p className="text-lg leading-relaxed opacity-90">
-                    {message}
-                </p>
-            </div>
+                            <h2 className="text-2xl md:text-3xl font-bold font-raleway mb-8 text-center leading-tight">
+                                {message}
+                            </h2>
 
-            <motion.a
-                href={ctaLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block w-full md:w-auto px-8 py-4 bg-[var(--color-brand-orange)] text-white font-bold rounded-xl shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all text-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                            <button
+                                onClick={() => setShowModal(false)}
+                                className="w-full py-4 bg-[var(--color-brand-orange)] text-white font-bold rounded-xl text-lg hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20 transform hover:scale-[1.02]"
+                            >
+                                Ver Disponibilidad
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <motion.div
+                className="w-full text-center space-y-8"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
             >
-                {ctaText}
-            </motion.a>
+                {/* Score & Tier Title: ONLY show for Low Score (<= 40) logic, or if we want to hide it completely for high score as requested */}
+                {!showCalendar && (
+                    <div className="space-y-2">
+                        <h3 className="text-[var(--color-brand-teal)] text-xl uppercase tracking-widest font-bold">Tu Resultado</h3>
+                        <h1 className="text-4xl md:text-5xl font-extrabold text-white">{tier}</h1>
+                        <div className="inline-block px-6 py-2 rounded-full bg-white/10 border border-white/20 mt-4">
+                            <span className="text-2xl font-bold text-[var(--color-brand-orange)]">{score}/100</span> <span className="text-sm opacity-70">Puntos</span>
+                        </div>
+                    </div>
+                )}
 
-            <p className="text-xs text-white/30 mt-8">
-                Revisa tu correo electrónico para ver el reporte detallado.
-            </p>
-        </motion.div>
+                {/* Main Content Area */}
+                {showCalendar ? (
+                    <div className="space-y-1">
+                        {/* High Score Header (replaces the Tier title) */}
+                        <div>
+                            <h1 className="text-xl md:text-3xl font-bold text-white mb-2 leading-snug">
+                                <span className="block text-[var(--color-brand-teal)]">¡Recibido! Último paso:</span>
+                                <span>Agenda tu Sesión de Estrategia Gratuita.</span>
+                            </h1>
+                            <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base mb-0">
+                                En esta sesión de 20 minutos, un estratega de nuestro equipo analizará tu perfil actual y te dará un plan de acción claro. Elige el horario que mejor te convenga a continuación:
+                            </p>
+                        </div>
+
+                        {/* Transparent Calendar Container with negative margin to pull it UP */}
+                        <div className="w-full max-w-[850px] mx-auto h-[600px] md:h-[750px] overflow-hidden -mt-4 md:-mt-12">
+                            <div style={{ width: "100%", height: "100%", overflow: "scroll" }} id="my-cal-inline-sesion-guia-digital"></div>
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                        {/* Low Score Message & CTA */}
+                        {!showModal && (
+                            <motion.div
+                                className="bg-white/5 p-6 rounded-2xl border border-white/10 max-w-lg mx-auto mb-8"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                            >
+                                <p className="text-lg leading-relaxed opacity-90">
+                                    {message}
+                                </p>
+                            </motion.div>
+                        )}
+
+                        <motion.a
+                            href="https://capitanlogo.com/guia-de-marca-digital/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block w-full md:w-auto px-8 py-4 bg-[var(--color-brand-orange)] text-white font-bold rounded-xl shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all text-lg"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Descarga la 'Ruta de Navegación'
+                        </motion.a>
+                    </>
+                )}
+
+                {!showCalendar && (
+                    <p className="text-xs text-white/30 mt-8">
+                        Revisa tu correo electrónico para ver el reporte detallado.
+                    </p>
+                )}
+            </motion.div>
+        </>
     );
 };

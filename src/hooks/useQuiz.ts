@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { QUESTIONS, type ModuleType, type Option } from '../data/quizData';
 
 export interface QuizState {
@@ -7,6 +7,7 @@ export interface QuizState {
     answers: Record<string, string>; // questionId -> optionId
     score: number;
     history: string[]; // for back navigation if needed
+    userInfo: { name: string; email: string } | null;
 }
 
 export const useQuiz = () => {
@@ -16,6 +17,7 @@ export const useQuiz = () => {
         answers: {},
         score: 0,
         history: [],
+        userInfo: null,
     });
 
     const currentQuestion = QUESTIONS.find((q) =>
@@ -45,6 +47,13 @@ export const useQuiz = () => {
         });
     };
 
+    const setUserInfo = (name: string, email: string) => {
+        setState((prev) => ({
+            ...prev,
+            userInfo: { name, email },
+        }));
+    };
+
     const goToNextStep = () => {
         setState((prev) => ({
             ...prev,
@@ -62,6 +71,26 @@ export const useQuiz = () => {
         });
     };
 
+    // --- Prevent accidental exit on Back Button ---
+    useEffect(() => {
+        // When step changes, push state to history so "Back" stays in app
+        if (state.currentStep > 1) {
+            window.history.pushState({ step: state.currentStep }, "");
+        }
+
+        const handlePopState = (event: PopStateEvent) => {
+            // Check if we can go back internally
+            if (state.currentStep > 1) {
+                // Prevent browser from leaving (conceptually), just update react state
+                // Popstate already changed URL/history, we just sync our state
+                goBack();
+            }
+        };
+
+        window.addEventListener("popstate", handlePopState);
+        return () => window.removeEventListener("popstate", handlePopState);
+    }, [state.currentStep]);
+
     return {
         currentStep: state.currentStep,
         currentQuestion,
@@ -70,6 +99,8 @@ export const useQuiz = () => {
         handleAnswer,
         goBack,
         goToNextStep,
+        setUserInfo,
+        userInfo: state.userInfo,
         answers: state.answers,
         isFinished: state.currentStep > 6, // 7 is Form, 8 is Result
     };

@@ -13,11 +13,13 @@ function App() {
     handleAnswer,
     answers,
     totalScore,
-    goToNextStep
+    goToNextStep,
+    setUserInfo,
+    userInfo
   } = useQuiz();
 
   return (
-    <Layout>
+    <Layout maxWidth={currentStep === 8 ? "max-w-5xl" : "max-w-2xl"}>
       {currentStep <= 7 && (
         <ProgressBar current={currentStep} total={8} />
       )}
@@ -37,6 +39,7 @@ function App() {
             answers={answers}
             totalScore={totalScore}
             onComplete={goToNextStep}
+            onUserInfo={setUserInfo}
           />
         )}
 
@@ -45,6 +48,7 @@ function App() {
             key="results"
             score={totalScore}
             answers={answers}
+            userInfo={userInfo}
           />
         )}
       </AnimatePresence>

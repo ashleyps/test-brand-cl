@@ -7,9 +7,10 @@ interface LeadFormProps {
     answers: Record<string, string>;
     totalScore: number;
     onComplete: () => void;
+    onUserInfo: (name: string, email: string) => void;
 }
 
-export const LeadForm = ({ answers, totalScore, onComplete }: LeadFormProps) => {
+export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo }: LeadFormProps) => {
     const [formData, setFormData] = useState({ nombre: '', email: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState('');
@@ -66,6 +67,7 @@ export const LeadForm = ({ answers, totalScore, onComplete }: LeadFormProps) => 
                 body: JSON.stringify(payload)
             });
 
+            onUserInfo(formData.nombre, formData.email);
             onComplete();
         } catch (err) {
             console.error(err);

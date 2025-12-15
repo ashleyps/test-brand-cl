@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 
 interface LayoutProps {
     children: ReactNode;
+    maxWidth?: string;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children, maxWidth = "max-w-2xl" }: LayoutProps) => {
     return (
         <div className="relative min-h-screen w-full overflow-hidden bg-[var(--color-brand-dark)] text-[var(--color-brand-white)] font-sans selection:bg-[var(--color-brand-orange)] selection:text-white">
             {/* Background Gradient - using CSS variables directly in style since Tailwind config might not map them exactly yet if not set up */}
@@ -37,7 +38,7 @@ export const Layout = ({ children }: LayoutProps) => {
             </header>
 
             {/* Main Content */}
-            <main className="relative z-10 w-full max-w-2xl mx-auto px-4 py-4 flex flex-col flex-grow justify-center items-center">
+            <main className={`relative z-10 w-full ${maxWidth} mx-auto px-4 py-4 flex flex-col flex-grow justify-center items-center`}>
                 {children}
             </main>
 
