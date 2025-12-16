@@ -17,8 +17,8 @@ export const OptionButton = ({ label, iconName, selected, onClick }: OptionButto
             className={`
         w-full p-3 md:p-4 rounded-xl border-2 flex items-center space-x-4 transition-all duration-200 text-left outline-none group
         ${selected
-                    ? 'bg-[var(--color-brand-orange)] border-[var(--color-brand-orange)] text-white shadow-lg'
-                    : 'bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/20'
+                    ? 'bg-[var(--color-brand-orange)] border-white/50 shadow-[0_0_15px_rgba(249,115,22,0.4)] text-white scale-[1.02]'
+                    : 'bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/30 hover:shadow-lg'
                 }
       `}
         >
@@ -31,17 +31,7 @@ export const OptionButton = ({ label, iconName, selected, onClick }: OptionButto
       `}>
                 <DynamicIcon name={iconName} size={24} />
             </div>
-            <span className="text-lg font-medium flex-grow">{label}</span>
-
-            {/* Radio Circle Indicator */}
-            <div className={`ml-3 w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-colors
-         ${selected
-                    ? 'border-white bg-white'
-                    : 'border-white/30 group-hover:border-[var(--color-brand-orange)]'
-                }
-      `}>
-                {selected && <div className="w-3 h-3 rounded-full bg-[var(--color-brand-orange)]" />}
-            </div>
+            <span className="text-lg font-medium flex-grow pr-2">{label}</span>
         </motion.button>
     );
 };

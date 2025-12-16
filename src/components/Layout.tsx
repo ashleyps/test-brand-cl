@@ -27,7 +27,7 @@ export const Layout = ({ children, maxWidth = "max-w-2xl" }: LayoutProps) => {
 
             <motion.div
                 className="absolute bottom-[-10%] left-[-10%] w-96 h-96 rounded-full opacity-10 blur-3xl"
-                style={{ backgroundColor: 'var(--color-brand-orange)' }}
+                style={{ backgroundColor: 'var(--color-brand-teal)' }}
                 animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.15, 0.05] }}
                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             />
