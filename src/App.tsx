@@ -5,8 +5,14 @@ import { QuestionView } from './components/views/QuestionView';
 import { LeadForm } from './components/views/LeadForm';
 import { ResultsView } from './components/views/ResultsView';
 import { ProgressBar } from './components/ui/ProgressBar';
+import { SuccessView } from './components/views/SuccessView';
 
 function App() {
+  // Simple "Routing" check
+  const path = window.location.pathname;
+  // Check for various confirmation paths to be safe
+  const isSuccessPage = path === '/confirmacion' || path === '/muchas-gracias' || path.includes('confirmacion');
+
   const {
     currentStep,
     currentQuestion,
@@ -19,6 +25,14 @@ function App() {
     resetQuiz,
     goBack,
   } = useQuiz();
+
+  if (isSuccessPage) {
+    return (
+      <Layout maxWidth="max-w-2xl">
+        <SuccessView />
+      </Layout>
+    );
+  }
 
   return (
     <Layout

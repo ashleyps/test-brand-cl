@@ -92,14 +92,7 @@ export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo, onRestar
                 </p>
             </div>
 
-            <div className="flex justify-center mb-6">
-                <button
-                    onClick={onRestart}
-                    className="text-white/40 hover:text-white/80 text-base underline transition-colors"
-                >
-                    Reiniciar Test
-                </button>
-            </div>
+
 
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -142,6 +135,17 @@ export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo, onRestar
                         </>
                     )}
                 </button>
+
+                <div className="flex justify-center mt-4">
+                    <button
+                        type="button"
+                        onClick={onRestart}
+                        className="text-white/40 hover:text-white/80 text-[12px] uppercase font-display underline transition-colors"
+                    >
+                        REINICIAR TEST
+                    </button>
+                </div>
+
                 <p className="text-[10px] text-white/40 leading-tight text-center mt-4">
                     Al registrarte, aceptas recibir comunicaciones por correo electrónico de nuestra parte, las cuales pueden ser enviadas mediante tecnología automatizada. Tu información es confidencial y no vendemos tus datos personales a terceros. Puedes darte de baja en cualquier momento haciendo clic en el enlace al final de nuestros correos. Al enviar este formulario, aceptas nuestra Política de Privacidad y Términos y Condiciones.
                 </p>

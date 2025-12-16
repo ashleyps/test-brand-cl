@@ -173,11 +173,11 @@ export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
                         {/* High Score Header (replaces the Tier title) */}
                         <div>
                             <h1 className="text-xl md:text-3xl font-bold text-white mb-2 leading-snug">
-                                <span className="block text-[var(--color-brand-teal)]">¡Recibido! Último paso:</span>
-                                <span>Agenda tu Sesión de Estrategia Gratuita.</span>
+                                <span className="block text-[var(--color-brand-teal)]">¡Tierra a la vista! ⚓️</span>
+                                <span>Tu diagnóstico indica que estás listo para zarpar.</span>
                             </h1>
                             <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base mb-0">
-                                En esta sesión de 20 minutos, un estratega de nuestro equipo analizará tu perfil actual y te dará un plan de acción claro. Elige el horario que mejor te convenga a continuación:
+                                Capitán, tienes las bases, pero necesitas un timonel experto para no navegar en círculos. He reservado este espacio para definir tu plan de ejecución en una Sesión Estratégica Gratuita. Elige tu horario abajo:
                             </p>
                         </div>
 
@@ -197,13 +197,13 @@ export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
                                 animate={{ opacity: 1, y: 0 }}
                             >
                                 <p className="text-lg leading-relaxed opacity-90">
-                                    {message}
+                                    Todo gran viaje comienza con un mapa. Tu puntuación indica que es el momento perfecto para construir tus cimientos digitales desde cero, sin vicios ni errores.
                                 </p>
                             </motion.div>
                         )}
 
                         <motion.a
-                            href="https://capitanlogo.com/guia-de-marca-digital/"
+                            href="https://drive.google.com/file/d/1T-Y_xSyvmRy4AghcUCwI0-9pnq-Cucoq/view"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block w-full md:w-auto px-8 py-4 bg-[var(--color-brand-orange)] text-white font-bold rounded-xl shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all text-lg"
@@ -218,7 +218,7 @@ export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
                 <div className="flex flex-col items-center gap-4 mt-8">
                     {!showCalendar && (
                         <p className="text-xs text-white/30">
-                            Revisa tu correo electrónico para ver el reporte detallado.
+                            📩 Importante: Acabo de enviarte a tu correo un análisis detallado de por qué obtuviste este resultado y tu primera misión.
                         </p>
                     )}
                 </div>
