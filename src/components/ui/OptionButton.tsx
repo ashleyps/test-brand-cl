@@ -4,11 +4,11 @@ import { DynamicIcon } from './DynamicIcon';
 interface OptionButtonProps {
     label: string;
     iconName: string;
-    selected?: boolean;
+    isSelected?: boolean;
     onClick: () => void;
 }
 
-export const OptionButton = ({ label, iconName, selected, onClick }: OptionButtonProps) => {
+export const OptionButton = ({ label, iconName, isSelected, onClick }: OptionButtonProps) => {
     return (
         <motion.button
             onClick={onClick}
@@ -16,16 +16,16 @@ export const OptionButton = ({ label, iconName, selected, onClick }: OptionButto
             whileTap={{ scale: 0.98 }}
             className={`
         w-full p-3 md:p-4 rounded-xl border-2 flex items-center space-x-4 transition-all duration-200 text-left outline-none group
-        ${selected
-                    ? 'bg-[var(--color-brand-orange)] border-white/50 shadow-[0_0_15px_rgba(249,115,22,0.4)] text-white scale-[1.02]'
+        ${isSelected
+                    ? 'bg-[var(--color-brand-teal)]/10 border-[var(--color-brand-teal)] shadow-[0_0_15px_rgba(67,174,186,0.3)] text-white scale-[1.02]'
                     : 'bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/30 hover:shadow-lg'
                 }
       `}
         >
             <div className={`
         p-3 rounded-full flex-shrink-0 transition-colors
-        ${selected
-                    ? 'bg-white text-[var(--color-brand-orange)]'
+        ${isSelected
+                    ? 'bg-[var(--color-brand-teal)] text-white'
                     : 'bg-white/10 text-[var(--color-brand-teal)] group-hover:text-[var(--color-brand-orange)] group-active:text-[var(--color-brand-orange)]'
                 }
       `}>

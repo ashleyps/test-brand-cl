@@ -21,9 +21,18 @@ function App() {
   } = useQuiz();
 
   return (
-    <Layout maxWidth={currentStep === 8 ? "max-w-5xl" : "max-w-2xl"}>
+    <Layout
+      maxWidth={currentStep === 8 ? "max-w-5xl" : "max-w-2xl"}
+      onBack={goBack}
+      onNext={goToNextStep}
+      hasAnswer={currentQuestion ? !!answers[currentQuestion.id] : false}
+      currentStep={currentStep}
+    >
       {currentStep <= 7 && (
-        <ProgressBar current={currentStep} total={8} />
+        <ProgressBar
+          current={currentStep}
+          total={8}
+        />
       )}
 
       <AnimatePresence mode="wait">
@@ -32,8 +41,7 @@ function App() {
             key={currentQuestion.id}
             question={currentQuestion}
             onAnswer={handleAnswer}
-            onBack={goBack}
-            currentStep={currentStep}
+            currentAnswer={answers[currentQuestion.id]}
           />
         )}
 
