@@ -15,7 +15,7 @@ export const OptionButton = ({ label, iconName, selected, onClick }: OptionButto
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={`
-        w-full p-4 rounded-xl border-2 flex items-center space-x-4 transition-all duration-200 text-left outline-none group
+        w-full p-3 md:p-4 rounded-xl border-2 flex items-center space-x-4 transition-all duration-200 text-left outline-none group
         ${selected
                     ? 'bg-[var(--color-brand-orange)] border-[var(--color-brand-orange)] text-white shadow-lg'
                     : 'bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/20'

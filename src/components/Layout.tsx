@@ -33,8 +33,8 @@ export const Layout = ({ children, maxWidth = "max-w-2xl" }: LayoutProps) => {
             />
 
             {/* Header */}
-            <header className="relative z-20 flex items-center justify-center py-6 px-4">
-                <img src="/capitanlogo-logo.svg" alt="Capitán Logo" className="h-12 md:h-16 drop-shadow-lg" />
+            <header className="relative z-20 flex items-center justify-center py-3 px-4">
+                <img src="/capitanlogo-logo.svg" alt="Capitán Logo" className="h-[43px] md:h-[58px] drop-shadow-lg" />
             </header>
 
             {/* Main Content */}
@@ -43,7 +43,7 @@ export const Layout = ({ children, maxWidth = "max-w-2xl" }: LayoutProps) => {
             </main>
 
             {/* Footer */}
-            <footer className="relative z-10 w-full py-6 text-center text-xs text-white/30">
+            <footer className="relative z-10 w-full py-3 md:py-6 text-center text-xs text-white/30">
                 <div className="flex justify-center items-center gap-2 text-sm text-white/60 mb-2">
                     <a href="https://capitanlogo.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand-teal)] transition-colors">Política de Privacidad</a>
                     <span className="opacity-50">|</span>
