@@ -1,18 +1,14 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+
 
 interface LayoutProps {
     children: ReactNode;
     maxWidth?: string;
-    onBack?: () => void;
-    onNext?: () => void;
-    hasAnswer?: boolean;
-    currentStep?: number;
 }
 
-export const Layout = ({ children, maxWidth = "max-w-2xl", onBack, onNext, hasAnswer, currentStep }: LayoutProps) => {
+export const Layout = ({ children, maxWidth = "max-w-2xl" }: LayoutProps) => {
     return (
         <div className="relative min-h-screen w-full overflow-hidden bg-[var(--color-brand-dark)] text-[var(--color-brand-white)] font-sans selection:bg-[var(--color-brand-orange)] selection:text-white">
             {/* Background Gradient - using CSS variables directly in style since Tailwind config might not map them exactly yet if not set up */}
@@ -50,20 +46,7 @@ export const Layout = ({ children, maxWidth = "max-w-2xl", onBack, onNext, hasAn
 
             {/* Footer */}
             <footer className="relative z-10 w-full pt-3 pb-5 md:py-6">
-                <div className="max-w-5xl mx-auto px-4 flex items-center justify-center gap-4">
-                    {/* Left Navigation */}
-                    <div className="w-14 h-8 flex items-center justify-center shrink-0">
-                        {currentStep && currentStep > 1 && onBack && (
-                            <button
-                                onClick={onBack}
-                                className="w-full h-full rounded-lg border border-[var(--color-brand-teal)] text-[var(--color-brand-teal)] hover:bg-[var(--color-brand-teal)] hover:text-white transition-all flex items-center justify-center"
-                                title="Anterior"
-                            >
-                                <ArrowLeft size={18} />
-                            </button>
-                        )}
-                    </div>
-
+                <div className="max-w-5xl mx-auto px-4 flex items-center justify-center">
                     {/* Footer Content */}
                     <div className="text-center text-xs text-white/30 flex-grow max-w-[600px]">
                         <div className="flex justify-center items-center gap-2 text-sm text-white/60 mb-2">
@@ -72,19 +55,6 @@ export const Layout = ({ children, maxWidth = "max-w-2xl", onBack, onNext, hasAn
                             <a href="https://capitanlogo.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand-teal)] transition-colors">Términos y Condiciones</a>
                         </div>
                         <p className="text-[10px] text-white/50 leading-tight">© {new Date().getFullYear()} Capitán Logo. Connecta, Conquista y Crece.</p>
-                    </div>
-
-                    {/* Right Navigation */}
-                    <div className="w-14 h-8 flex items-center justify-center shrink-0">
-                        {hasAnswer && onNext && (
-                            <button
-                                onClick={onNext}
-                                className="w-full h-full rounded-lg border border-[var(--color-brand-teal)] text-[var(--color-brand-teal)] hover:bg-[var(--color-brand-teal)] hover:text-white transition-all flex items-center justify-center"
-                                title="Siguiente"
-                            >
-                                <ArrowRight size={18} />
-                            </button>
-                        )}
                     </div>
                 </div>
             </footer>

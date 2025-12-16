@@ -23,15 +23,14 @@ function App() {
   return (
     <Layout
       maxWidth={currentStep === 8 ? "max-w-5xl" : "max-w-2xl"}
-      onBack={goBack}
-      onNext={goToNextStep}
-      hasAnswer={currentQuestion ? !!answers[currentQuestion.id] : false}
-      currentStep={currentStep}
     >
       {currentStep <= 7 && (
         <ProgressBar
           current={currentStep}
-          total={8}
+          total={7}
+          onBack={goBack}
+          onNext={goToNextStep}
+          hasAnswer={currentQuestion ? !!answers[currentQuestion.id] : false}
         />
       )}
 
