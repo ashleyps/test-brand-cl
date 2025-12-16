@@ -10,7 +10,7 @@ export interface QuizState {
     userInfo: { name: string; email: string } | null;
 }
 
-const STORAGE_KEY = 'quiz_state_v1';
+const STORAGE_KEY = 'quiz_state_v2';
 
 export const useQuiz = () => {
     const [state, setState] = useState<QuizState>(() => {

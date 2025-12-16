@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { QUESTIONS } from '../../data/quizData';
 import { X } from 'lucide-react';
 
+
 interface ResultsViewProps {
     score: number;
     answers: Record<string, string>;
     userInfo: { name: string; email: string } | null;
+    onRestart: () => void;
 }
 
 declare global {
@@ -15,7 +17,7 @@ declare global {
     }
 }
 
-export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
+export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsViewProps) => {
     const [showModal, setShowModal] = useState(score > 40);
 
     // Determine Tier
@@ -215,12 +217,20 @@ export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
                     </>
                 )}
 
-                <div className="flex flex-col items-center gap-4 mt-8">
+                <div className="flex flex-col items-center gap-4 mt-8 pb-8">
                     {!showCalendar && (
                         <p className="text-xs text-white/30">
                             📩 Importante: Acabo de enviarte a tu correo un análisis detallado de por qué obtuviste este resultado y tu primera misión.
                         </p>
                     )}
+
+                    <button
+                        onClick={onRestart}
+                        className="text-white/40 hover:text-[var(--color-brand-orange)] text-xs uppercase tracking-widest font-raleway transition-colors mt-4"
+                    >
+                        REINICIAR TEST
+                    </button>
+
                 </div>
             </motion.div>
         </>

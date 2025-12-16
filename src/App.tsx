@@ -75,6 +75,7 @@ function App() {
             score={totalScore}
             answers={answers}
             userInfo={userInfo}
+            onRestart={resetQuiz}
           />
         )}
       </AnimatePresence>
