@@ -15,7 +15,8 @@ function App() {
     totalScore,
     goToNextStep,
     setUserInfo,
-    userInfo
+    userInfo,
+    resetQuiz
   } = useQuiz();
 
   return (
@@ -49,6 +50,7 @@ function App() {
             score={totalScore}
             answers={answers}
             userInfo={userInfo}
+            onRestart={resetQuiz}
           />
         )}
       </AnimatePresence>

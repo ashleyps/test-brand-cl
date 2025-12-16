@@ -10,15 +10,36 @@ export interface QuizState {
     userInfo: { name: string; email: string } | null;
 }
 
+const STORAGE_KEY = 'quiz_state_v1';
+
 export const useQuiz = () => {
-    const [state, setState] = useState<QuizState>({
-        currentStep: 1,
-        selectedModule: null,
-        answers: {},
-        score: 0,
-        history: [],
-        userInfo: null,
+    const [state, setState] = useState<QuizState>(() => {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                return JSON.parse(stored);
+            }
+        } catch (error) {
+            console.error("Failed to load quiz state", error);
+        }
+
+        return {
+            currentStep: 1,
+            selectedModule: null,
+            answers: {},
+            score: 0,
+            history: [],
+            userInfo: null,
+        };
     });
+
+    useEffect(() => {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (error) {
+            console.error("Failed to save quiz state", error);
+        }
+    }, [state]);
 
     const currentQuestion = QUESTIONS.find((q) =>
         q.stepId === state.currentStep &&
@@ -91,6 +112,23 @@ export const useQuiz = () => {
         return () => window.removeEventListener("popstate", handlePopState);
     }, [state.currentStep]);
 
+    const resetQuiz = () => {
+        try {
+            localStorage.removeItem(STORAGE_KEY);
+        } catch (error) {
+            console.error("Failed to clear quiz state", error);
+        }
+
+        setState({
+            currentStep: 1,
+            selectedModule: null,
+            answers: {},
+            score: 0,
+            history: [],
+            userInfo: null,
+        });
+    };
+
     return {
         currentStep: state.currentStep,
         currentQuestion,
@@ -100,6 +138,7 @@ export const useQuiz = () => {
         goBack,
         goToNextStep,
         setUserInfo,
+        resetQuiz,
         userInfo: state.userInfo,
         answers: state.answers,
         isFinished: state.currentStep > 6, // 7 is Form, 8 is Result

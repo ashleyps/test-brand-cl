@@ -7,6 +7,7 @@ interface ResultsViewProps {
     score: number;
     answers: Record<string, string>;
     userInfo: { name: string; email: string } | null;
+    onRestart: () => void;
 }
 
 declare global {
@@ -15,7 +16,7 @@ declare global {
     }
 }
 
-export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
+export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsViewProps) => {
     const [showModal, setShowModal] = useState(score > 40);
 
     // Determine Tier
@@ -215,11 +216,20 @@ export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
                     </>
                 )}
 
-                {!showCalendar && (
-                    <p className="text-xs text-white/30 mt-8">
-                        Revisa tu correo electrónico para ver el reporte detallado.
-                    </p>
-                )}
+                <div className="flex flex-col items-center gap-4 mt-8">
+                    {!showCalendar && (
+                        <p className="text-xs text-white/30">
+                            Revisa tu correo electrónico para ver el reporte detallado.
+                        </p>
+                    )}
+
+                    <button
+                        onClick={onRestart}
+                        className="text-white/40 hover:text-white/80 text-sm underline transition-colors"
+                    >
+                        Reiniciar Test
+                    </button>
+                </div>
             </motion.div>
         </>
     );
