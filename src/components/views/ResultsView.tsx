@@ -7,7 +7,6 @@ interface ResultsViewProps {
     score: number;
     answers: Record<string, string>;
     userInfo: { name: string; email: string } | null;
-    onRestart: () => void;
 }
 
 declare global {
@@ -16,7 +15,7 @@ declare global {
     }
 }
 
-export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsViewProps) => {
+export const ResultsView = ({ score, answers, userInfo }: ResultsViewProps) => {
     const [showModal, setShowModal] = useState(score > 40);
 
     // Determine Tier
@@ -182,8 +181,8 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
                             </p>
                         </div>
 
-                        {/* Transparent Calendar Container with negative margin to pull it UP */}
-                        <div className="w-full max-w-[850px] mx-auto h-[600px] md:h-[750px] overflow-hidden -mt-4 md:-mt-12">
+                        {/* Transparent Calendar Container with negative margin to pull it UP only on Desktop */}
+                        <div className="w-full max-w-[850px] mx-auto h-[600px] md:h-[750px] overflow-hidden mt-0 md:-mt-12">
                             <div style={{ width: "100%", height: "100%", overflow: "scroll" }} id="my-cal-inline-sesion-guia-digital"></div>
                         </div>
 
@@ -222,13 +221,6 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
                             Revisa tu correo electrónico para ver el reporte detallado.
                         </p>
                     )}
-
-                    <button
-                        onClick={onRestart}
-                        className="text-white/40 hover:text-white/80 text-sm underline transition-colors"
-                    >
-                        Reiniciar Test
-                    </button>
                 </div>
             </motion.div>
         </>

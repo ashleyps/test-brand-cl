@@ -8,9 +8,10 @@ interface LeadFormProps {
     totalScore: number;
     onComplete: () => void;
     onUserInfo: (name: string, email: string) => void;
+    onRestart: () => void;
 }
 
-export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo }: LeadFormProps) => {
+export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo, onRestart }: LeadFormProps) => {
     const [formData, setFormData] = useState({ nombre: '', email: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState('');
@@ -89,6 +90,15 @@ export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo }: LeadFo
                 <p className="text-white/70">
                     Para enviarte tu "Diagnóstico de Preparación Digital" y la "Ruta de Navegación" completa, ¿dónde te lo enviamos?
                 </p>
+            </div>
+
+            <div className="flex justify-center mb-6">
+                <button
+                    onClick={onRestart}
+                    className="text-white/40 hover:text-white/80 text-base underline transition-colors"
+                >
+                    Reiniciar Test
+                </button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
