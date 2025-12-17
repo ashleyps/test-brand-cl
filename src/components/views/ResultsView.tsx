@@ -19,16 +19,7 @@ declare global {
 
 export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsViewProps) => {
     // EXTRACT SCORES based on Step ID
-    // Execution: Steps 1-4
     // Intention: Steps 5-6
-    const executionScore = QUESTIONS
-        .filter(q => q.stepId <= 4)
-        .reduce((acc, q) => {
-            const selectedOptionId = answers[q.id];
-            if (!selectedOptionId) return acc;
-            const option = q.options.find(o => o.id === selectedOptionId);
-            return acc + (option?.points || 0);
-        }, 0);
 
     const intentionScore = QUESTIONS
         .filter(q => q.stepId >= 5)
