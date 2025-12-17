@@ -102,7 +102,7 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
 
                     console.log("Reserva detectada en Cal.com, redirigiendo...");
                     setTimeout(() => {
-                        window.location.href = "https://lp.capitanlogo.com/muchas-gracias/";
+                        window.location.href = "/confirmacion";
                     }, 4000);
                 }
             }
