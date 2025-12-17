@@ -101,7 +101,7 @@ export const BookingView = () => {
                 >
                     <button
                         data-cal-namespace="quiz-de-marca"
-                        data-cal-link="capitanlogo/quiz-de-marca"
+                        data-cal-link="capitanlogo/quiz-de-marca?theme=dark&brandColor=ff6600"
                         data-cal-config='{"layout":"month_view"}'
                         className="group relative px-10 py-5 bg-[var(--color-brand-orange)] text-white font-bold rounded-2xl text-xl md:text-2xl shadow-xl shadow-orange-500/20 hover:bg-orange-600 hover:shadow-orange-500/40 transition-all transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
                     >
