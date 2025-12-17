@@ -79,9 +79,14 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
             "hideEventTypeDetails": false,
             "layout": "month_view",
             "theme": "dark",
+            "styles": {
+                "branding": {
+                    "brandColor": "#ff6600"
+                }
+            },
             "cssVarsPerTheme": {
                 "light": { "cal-brand": "#ff6600" },
-                "dark": { "cal-brand": "#ff6600", "cal-canvas": "#202a30" } // Match app dark background
+                "dark": { "cal-brand": "#ff6600" }
             }
         });
 

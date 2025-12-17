@@ -41,9 +41,14 @@ export const BookingView = () => {
 
         window.Cal.ns["quiz-de-marca"]("ui", {
             "theme": "dark",
+            "styles": {
+                "branding": {
+                    "brandColor": "#ff6600"
+                }
+            },
             "cssVarsPerTheme": {
                 "light": { "cal-brand": "#ff6600" },
-                "dark": { "cal-brand": "#ff6600", "cal-canvas": "#202a30" }
+                "dark": { "cal-brand": "#ff6600" }
             },
             "hideEventTypeDetails": false,
             "layout": "month_view"
