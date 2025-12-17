@@ -46,13 +46,26 @@ export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo, onRestar
             return answers[answeredId]; // Returns 'A', 'B', etc.
         };
 
+        const getAnswerText = (qIdPrefix: string) => {
+            const answeredId = Object.keys(answers).find(k => k.startsWith(qIdPrefix));
+            if (!answeredId) return '';
+            const answerOptionId = answers[answeredId];
+            const question = QUESTIONS.find(q => q.id === answeredId);
+            const option = question?.options.find(o => o.id === answerOptionId);
+            return option?.label || '';
+        };
+
         const payload = {
             nombre: formData.nombre,
             email: formData.email,
             puntuacion_total: totalScore,
             q1_dolor_principal: answers['q1'],
-            q2_puntuacion: getPoints('q2'), // Handles q2_A, q2_B etc.
+            q2_puntuacion: getPoints('q2'),
+            q2_detalle: getAnswerLabel('q2'),
+            q2_texto: getAnswerText('q2'),
             q3_puntuacion: getPoints('q3'),
+            q3_detalle: getAnswerLabel('q3'),
+            q3_texto: getAnswerText('q3'),
             q4_impacto: getAnswerLabel('q4'),
             q5_urgencia: getAnswerLabel('q5'),
             q6_presupuesto: getAnswerLabel('q6'),

@@ -37,18 +37,15 @@ export const BookingView = () => {
             };
         })(window, "https://app.cal.com/embed/embed.js", "init");
 
-        window.Cal("init", "sesion-guia-digital", { origin: "https://app.cal.com" });
+        window.Cal("init", "quiz-de-marca", { origin: "https://app.cal.com" });
 
-        window.Cal.ns["sesion-guia-digital"]("inline", {
-            elementOrSelector: "#my-cal-inline-sesion-guia-digital",
-            config: { "layout": "month_view", "theme": "light" },
-            calLink: "capitanlogo/sesion-guia-digital",
-        });
-
-        window.Cal.ns["sesion-guia-digital"]("ui", {
-            "theme": "light",
-            "cssVarsPerTheme": { "light": { "cal-brand": "#ff6600" } },
-            "hideEventTypeDetails": true,
+        window.Cal.ns["quiz-de-marca"]("ui", {
+            "theme": "dark",
+            "cssVarsPerTheme": {
+                "light": { "cal-brand": "#ff6600" },
+                "dark": { "cal-brand": "#ff6600", "cal-canvas": "#202a30" }
+            },
+            "hideEventTypeDetails": false,
             "layout": "month_view"
         });
 
@@ -74,27 +71,43 @@ export const BookingView = () => {
 
     return (
         <motion.div
-            className="w-full text-center space-y-8"
+            className="w-full text-center space-y-8 flex flex-col items-center justify-center min-h-[60vh]"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="space-y-1">
+            <div className="space-y-8 max-w-3xl mx-auto">
                 {/* Header */}
-                <div>
-                    <h1 className="text-xl md:text-3xl font-bold text-white mb-2 leading-snug">
-                        <span className="block text-[var(--color-brand-teal)]">Agenda tu Sesión Estratégica ⚓️</span>
-                        <span>Estás a un paso de tomar el control de tu marca.</span>
+                <div className="space-y-4">
+                    <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                        <span className="block text-[var(--color-brand-teal)] mb-2">Agenda tu Sesión Estratégica ⚓️</span>
+                        <span>Estás a un paso de tomar el control.</span>
                     </h1>
-                    <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base mb-0">
+                    <p className="text-white/70 text-lg md:text-xl leading-relaxed">
                         Selecciona el horario que mejor te convenga para analizar tu situación actual y trazar tu plan de acción.
                     </p>
                 </div>
 
-                {/* Transparent Calendar Container with negative margin to pull it UP only on Desktop */}
-                <div className="w-full max-w-[850px] mx-auto h-[600px] md:h-[750px] overflow-hidden mt-0 md:-mt-12">
-                    <div style={{ width: "100%", height: "100%", overflow: "scroll" }} id="my-cal-inline-sesion-guia-digital"></div>
-                </div>
+                {/* Action Button */}
+                <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <button
+                        data-cal-namespace="quiz-de-marca"
+                        data-cal-link="capitanlogo/quiz-de-marca"
+                        data-cal-config='{"layout":"month_view"}'
+                        className="group relative px-10 py-5 bg-[var(--color-brand-orange)] text-white font-bold rounded-2xl text-xl md:text-2xl shadow-xl shadow-orange-500/20 hover:bg-orange-600 hover:shadow-orange-500/40 transition-all transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
+                    >
+                        <span className="relative z-10 flex items-center justify-center gap-3">
+                            🗓️ Abrir Calendario
+                        </span>
+                    </button>
+                    <p className="text-sm text-gray-500 mt-4">
+                        Se abrirá una ventana segura de Cal.com
+                    </p>
+                </motion.div>
             </div>
         </motion.div>
     );
