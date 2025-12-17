@@ -7,11 +7,14 @@ import { ResultsView } from './components/views/ResultsView';
 import { ProgressBar } from './components/ui/ProgressBar';
 import { SuccessView } from './components/views/SuccessView';
 
+import { BookingView } from './components/views/BookingView';
+
 function App() {
   // Simple "Routing" check
   const path = window.location.pathname;
   // Check for various confirmation paths to be safe
   const isSuccessPage = path === '/confirmacion' || path === '/muchas-gracias' || path.includes('confirmacion');
+  const isBookingPage = path === '/agendar' || path.includes('agendar');
 
   const {
     currentStep,
@@ -33,6 +36,15 @@ function App() {
       </Layout>
     );
   }
+
+  if (isBookingPage) {
+    return (
+      <Layout maxWidth="max-w-5xl">
+        <BookingView />
+      </Layout>
+    );
+  }
+
 
   return (
     <Layout
