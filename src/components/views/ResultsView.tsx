@@ -18,12 +18,33 @@ declare global {
 }
 
 export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsViewProps) => {
-    const [showModal, setShowModal] = useState(score > 40);
+    // EXTRACT SCORES based on Step ID
+    // Execution: Steps 1-4
+    // Intention: Steps 5-6
+    const executionScore = QUESTIONS
+        .filter(q => q.stepId <= 4)
+        .reduce((acc, q) => {
+            const selectedOptionId = answers[q.id];
+            if (!selectedOptionId) return acc;
+            const option = q.options.find(o => o.id === selectedOptionId);
+            return acc + (option?.points || 0);
+        }, 0);
 
-    // Determine Tier
+    const intentionScore = QUESTIONS
+        .filter(q => q.stepId >= 5)
+        .reduce((acc, q) => {
+            const selectedOptionId = answers[q.id];
+            if (!selectedOptionId) return acc;
+            const option = q.options.find(o => o.id === selectedOptionId);
+            return acc + (option?.points || 0);
+        }, 0);
+
+    const showCalendar = intentionScore > 30;
+    const [showModal, setShowModal] = useState(showCalendar);
+
+    // Determine Tier (Visual Label only)
     let tier = '';
     let message = '';
-    const showCalendar = score > 40;
 
     const q1Id = answers['q1'];
     const q1Question = QUESTIONS.find(q => q.id === 'q1');
