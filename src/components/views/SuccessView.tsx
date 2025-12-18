@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle, Instagram, Linkedin, Facebook, Globe } from 'lucide-react';
+import { CheckCircle, Instagram, Linkedin, Facebook, Twitter, Youtube, Mail, MessageCircle } from 'lucide-react';
 
 export const SuccessView = () => {
     return (
@@ -56,31 +56,52 @@ export const SuccessView = () => {
             </p>
 
             {/* CTA Button */}
+            {/* CTA Button */}
             <a
                 href="https://instagram.com/capitanlogo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[var(--color-brand-orange)] text-white hover:bg-orange-600 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,102,0,0.4)] mb-12 gap-2 transform hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[var(--color-brand-orange)] text-white hover:bg-orange-600 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,102,0,0.4)] mb-8 gap-2 transform hover:scale-105"
             >
                 <Instagram size={24} />
                 Sígueme en Instagram
             </a>
 
+            {/* Developed By Promo */}
+            <div className="mb-10 text-sm">
+                <p className="text-white/50">
+                    Este Quiz fue desarrollado por <strong className="text-white">Capitán Logo</strong>.
+                </p>
+                <a
+                    href="https://wa.me/+584122820000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-brand-orange)] hover:text-white transition-colors font-medium mt-1 inline-block"
+                >
+                    ¿Necesitas uno para tu negocio?
+                </a>
+            </div>
+
             {/* Social Footer */}
             <div className="border-t border-white/10 pt-8">
-                <p className="text-white/40 text-sm mb-4">Síguenos mientras esperas:</p>
-                <div className="flex justify-center gap-6">
-                    <a href="https://instagram.com/capitanlogo" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform">
-                        <Instagram size={24} />
-                    </a>
-                    <a href="https://linkedin.com/company/capitanlogo" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform">
-                        <Linkedin size={24} />
-                    </a>
-                    <a href="https://facebook.com/capitanlogo" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform">
+                <div className="flex justify-center gap-6 flex-wrap">
+                    <a href="https://www.facebook.com/capitanlogo" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform" title="Facebook">
                         <Facebook size={24} />
                     </a>
-                    <a href="https://capitanlogo.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform">
-                        <Globe size={24} />
+                    <a href="https://www.linkedin.com/company/capitanlogo/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform" title="LinkedIn">
+                        <Linkedin size={24} />
+                    </a>
+                    <a href="https://x.com/capitanlogo" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform" title="X (Twitter)">
+                        <Twitter size={24} />
+                    </a>
+                    <a href="https://www.youtube.com/@capitanlogo" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform" title="YouTube">
+                        <Youtube size={24} />
+                    </a>
+                    <a href="mailto:info@capitanlogo.com" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform" title="Email">
+                        <Mail size={24} />
+                    </a>
+                    <a href="https://wa.me/+584122820000" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-brand-orange)] transition-colors hover:scale-110 transform" title="WhatsApp">
+                        <MessageCircle size={24} />
                     </a>
                 </div>
             </div>
