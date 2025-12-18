@@ -204,9 +204,9 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
                 </>
             )}
 
-            <div className="flex flex-col items-center gap-4 mt-8 pb-8">
+            <div className="flex flex-col items-center gap-4 mt-4 pb-8">
                 {!showCalendar && (
-                    <p className="text-xs text-white/30">
+                    <p className="text-[14px] text-white/80">
                         📩 Importante: Acabo de enviarte a tu correo un análisis detallado de por qué obtuviste este resultado y tu primera misión.
                     </p>
                 )}

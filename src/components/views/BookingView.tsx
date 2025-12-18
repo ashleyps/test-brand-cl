@@ -1,60 +1,25 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-declare global {
-    interface Window {
-        Cal: any;
-    }
-}
+import { getCalApi } from "@calcom/embed-react";
 
 export const BookingView = () => {
     // Initialize Cal.com logic
     useEffect(() => {
-        (function (C: any, A: string, L: string) {
-            let p = function (a: any, ar: any) { a.q.push(ar); };
-            let d = C.document;
-            C.Cal = C.Cal || function () {
-                let cal = C.Cal;
-                let ar = arguments;
-                if (!cal.loaded) {
-                    cal.ns = {};
-                    cal.q = cal.q || [];
-                    d.head.appendChild(d.createElement("script")).src = A;
-                    cal.loaded = true;
-                }
-                if (ar[0] === L) {
-                    const api: any = function () { p(api, arguments); };
-                    const namespace = ar[1];
-                    api.q = api.q || [];
-                    if (typeof namespace === "string") {
-                        cal.ns[namespace] = cal.ns[namespace] || api;
-                        p(cal.ns[namespace], ar);
-                        p(cal, ["initNamespace", namespace]);
-                    } else p(cal, ar);
-                    return;
-                }
-                p(cal, ar);
-            };
-        })(window, "https://app.cal.com/embed/embed.js", "init");
+        (async function () {
+            const cal = await getCalApi({ "namespace": "quiz-de-marca" });
+            cal("ui", {
+                "cssVarsPerTheme": {
+                    "light": { "cal-brand": "#FF6600" },
+                    "dark": { "cal-brand": "#FF6600" }
+                },
+                "hideEventTypeDetails": true,
+                "layout": "month_view"
+            });
+        })();
+    }, []);
 
-        window.Cal("init", "quiz-de-marca", { origin: "https://app.cal.com" });
-
-        window.Cal.ns["quiz-de-marca"]("ui", {
-            "theme": "dark",
-            "styles": {
-                "branding": {
-                    "brandColor": "#ff6600"
-                }
-            },
-            "cssVarsPerTheme": {
-                "light": { "cal-brand": "#ff6600" },
-                "dark": { "cal-brand": "#ff6600" }
-            },
-            "hideEventTypeDetails": false,
-            "layout": "month_view"
-        });
-
-        // Event listener for booking success
+    // Event listener for booking success
+    useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
             if (event.origin === "https://app.cal.com" || event.origin === "https://cal.com") {
                 if (event.data.type === "bookingSuccessful" ||
@@ -71,7 +36,6 @@ export const BookingView = () => {
 
         window.addEventListener("message", handleMessage);
         return () => window.removeEventListener("message", handleMessage);
-
     }, []);
 
     return (
@@ -101,8 +65,8 @@ export const BookingView = () => {
                 >
                     <button
                         data-cal-namespace="quiz-de-marca"
-                        data-cal-link="capitanlogo/quiz-de-marca?theme=dark&brandColor=ff6600"
-                        data-cal-config='{"layout":"month_view"}'
+                        data-cal-link="capitanlogo/quiz-de-marca"
+                        data-cal-config='{"layout":"month_view","theme":"auto"}'
                         className="group relative px-10 py-5 bg-[var(--color-brand-orange)] text-white font-bold rounded-2xl text-xl md:text-2xl shadow-xl shadow-orange-500/20 hover:bg-orange-600 hover:shadow-orange-500/40 transition-all transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden"
                     >
                         <span className="relative z-10 flex items-center justify-center gap-3">
