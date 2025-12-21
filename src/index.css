@@ -6,14 +6,14 @@
   --font-sans: 'Jost', sans-serif;
   --font-display: 'Raleway', sans-serif;
 
-  --color-brand-orange: #ff6600;
-  --color-brand-dark: #202a30;
-  --color-brand-gray: #3e3f42;
-  --color-brand-gray-light: #77828c;
-  --color-brand-white: #fcfcfc;
-  --color-brand-teal: #43aeba;
-  --color-brand-teal-dark: #043345;
-  --color-brand-blue-muted: #344c61;
+  --color-brand-orange: #f97316;
+  --color-brand-dark: #0f172a;
+  --color-brand-gray: #334155;
+  --color-brand-gray-light: #94a3b8;
+  --color-brand-white: #f8fafc;
+  --color-brand-teal: #14b8a6;
+  --color-brand-teal-dark: #1e293b;
+  --color-brand-blue-muted: #475569;
 }
 
 /* Custom Base Styles */

@@ -2,6 +2,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Layout } from './components/Layout';
 import { useQuiz } from './hooks/useQuiz';
 import { QuestionView } from './components/views/QuestionView';
+import { IntroView } from './components/views/IntroView';
 import { LeadForm } from './components/views/LeadForm';
 import { ResultsView } from './components/views/ResultsView';
 import { ProgressBar } from './components/ui/ProgressBar';
@@ -50,7 +51,7 @@ function App() {
     <Layout
       maxWidth={currentStep === 8 ? "max-w-5xl" : "max-w-2xl"}
     >
-      {currentStep <= 7 && (
+      {currentStep > 0 && currentStep <= 7 && (
         <ProgressBar
           current={currentStep}
           total={7}
@@ -61,7 +62,11 @@ function App() {
       )}
 
       <AnimatePresence mode="wait">
-        {currentStep <= 6 && currentQuestion && (
+        {currentStep === 0 && (
+          <IntroView key="intro" onStart={goToNextStep} />
+        )}
+
+        {currentStep > 0 && currentStep <= 6 && currentQuestion && (
           <QuestionView
             key={currentQuestion.id}
             question={currentQuestion}

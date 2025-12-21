@@ -14,16 +14,16 @@ export const ProgressBar = ({ current, total, onBack, onNext, hasAnswer }: Progr
     const percentage = Math.min((current / total) * 100, 100);
 
     return (
-        <div className="w-full mb-8 flex items-center justify-between gap-4">
+        <div className="w-full mb-2 md:mb-8 flex items-center justify-between gap-3">
             {/* Back Button */}
-            <div className="w-10 h-10 shrink-0 flex items-center justify-center">
+            <div className="w-8 h-8 shrink-0 flex items-center justify-center">
                 {current > 1 && onBack && (
                     <button
                         onClick={onBack}
-                        className="w-10 h-10 rounded-full bg-white/5 border border-white/10 text-[var(--color-brand-teal)] hover:bg-[var(--color-brand-teal)] hover:text-white transition-all flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_rgba(67,174,186,0.5)] backdrop-blur-sm"
+                        className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-[var(--color-brand-teal)] hover:bg-[var(--color-brand-teal)] hover:text-white transition-all flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_rgba(67,174,186,0.5)] backdrop-blur-sm"
                         title="Anterior"
                     >
-                        <ArrowLeft size={20} />
+                        <ArrowLeft size={16} />
                     </button>
                 )}
             </div>
@@ -61,14 +61,14 @@ export const ProgressBar = ({ current, total, onBack, onNext, hasAnswer }: Progr
             </div>
 
             {/* Next Button */}
-            <div className="w-10 h-10 shrink-0 flex items-center justify-center">
+            <div className="w-8 h-8 shrink-0 flex items-center justify-center">
                 {hasAnswer && onNext && (
                     <button
                         onClick={onNext}
-                        className="w-10 h-10 rounded-full bg-white/5 border border-white/10 text-[var(--color-brand-teal)] hover:bg-[var(--color-brand-teal)] hover:text-white transition-all flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_rgba(67,174,186,0.5)] backdrop-blur-sm"
+                        className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-[var(--color-brand-teal)] hover:bg-[var(--color-brand-teal)] hover:text-white transition-all flex items-center justify-center shadow-lg hover:shadow-[0_0_15px_rgba(67,174,186,0.5)] backdrop-blur-sm"
                         title="Siguiente"
                     >
-                        <ArrowRight size={20} />
+                        <ArrowRight size={16} />
                     </button>
                 )}
             </div>

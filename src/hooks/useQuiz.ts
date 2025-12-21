@@ -24,7 +24,7 @@ export const useQuiz = () => {
         }
 
         return {
-            currentStep: 1,
+            currentStep: 0,
             selectedModule: null,
             answers: {},
             score: 0,
@@ -84,7 +84,7 @@ export const useQuiz = () => {
 
     const goBack = () => {
         setState((prev) => {
-            if (prev.currentStep <= 1) return prev;
+            if (prev.currentStep <= 0) return prev;
             return {
                 ...prev,
                 currentStep: prev.currentStep - 1
@@ -120,7 +120,7 @@ export const useQuiz = () => {
         }
 
         setState({
-            currentStep: 1,
+            currentStep: 0,
             selectedModule: null,
             answers: {},
             score: 0,

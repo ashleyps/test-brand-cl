@@ -13,14 +13,14 @@ interface QuestionViewProps {
 export const QuestionView = ({ question, onAnswer, currentAnswer }: QuestionViewProps) => {
     return (
         <motion.div
-            className="w-full flex flex-col gap-4 md:gap-6 relative"
+            className="w-full flex flex-col gap-2 md:gap-6 relative"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
         >
-            <div className="text-center space-y-2">
-                <h2 className="text-[20px] md:text-[26px] font-bold leading-tight">
+            <div className="text-center mb-2">
+                <h2 className="text-[19px] md:text-[26px] font-bold leading-tight">
                     {question.title}
                 </h2>
                 {question.subtitle && (
@@ -28,7 +28,7 @@ export const QuestionView = ({ question, onAnswer, currentAnswer }: QuestionView
                 )}
             </div>
 
-            <div className="grid gap-3 w-full">
+            <div className="grid gap-2 w-full">
                 {question.options.map((option) => (
                     <OptionButton
                         key={option.id}

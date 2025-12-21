@@ -35,21 +35,21 @@ export const Layout = ({ children, maxWidth = "max-w-2xl" }: LayoutProps) => {
             />
 
             {/* Header */}
-            <header className="relative z-20 flex items-center justify-center py-3 px-4">
-                <img src="/capitanlogo-logo.svg" alt="Capitán Logo" className="h-[43px] md:h-[58px] drop-shadow-lg" />
+            <header className="relative z-20 flex items-center justify-center py-2 px-4">
+                <img src="/capitanlogo-logo.svg" alt="Capitán Logo" className="h-[35px] md:h-[58px] drop-shadow-lg" />
             </header>
 
             {/* Main Content */}
-            <main className={`relative z-10 w-full ${maxWidth} mx-auto px-4 py-4 flex flex-col flex-grow justify-center items-center`}>
+            <main className={`relative z-10 w-full ${maxWidth} mx-auto px-4 py-1 md:py-4 flex flex-col flex-grow justify-center items-center`}>
                 {children}
             </main>
 
             {/* Footer */}
-            <footer className="relative z-10 w-full pt-3 pb-5 md:py-6">
+            <footer className="relative z-10 w-full pb-3 pt-4 md:py-6">
                 <div className="max-w-5xl mx-auto px-4 flex items-center justify-center">
                     {/* Footer Content */}
                     <div className="text-center text-xs text-white/30 flex-grow max-w-[600px]">
-                        <div className="flex justify-center items-center gap-2 text-sm text-white/60 mb-2">
+                        <div className="flex justify-center items-center gap-2 text-[10px] md:text-xs text-white/60 mb-2 whitespace-nowrap">
                             <a href="https://capitanlogo.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand-teal)] transition-colors">Política de Privacidad</a>
                             <span className="opacity-50">|</span>
                             <a href="https://capitanlogo.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-brand-teal)] transition-colors">Términos y Condiciones</a>
