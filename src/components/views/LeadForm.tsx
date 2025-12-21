@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Loader2 } from 'lucide-react';
 import { QUESTIONS } from '../../data/quizData';
@@ -13,7 +13,21 @@ interface LeadFormProps {
 
 export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo, onRestart }: LeadFormProps) => {
     const [formData, setFormData] = useState({ nombre: '', email: '' });
+    const [utmParams, setUtmParams] = useState({
+        country_code: '',
+        utm_content: '',
+        utm_campaign: ''
+    });
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        const searchParams = new URLSearchParams(window.location.search);
+        setUtmParams({
+            country_code: searchParams.get('country_code') || '',
+            utm_content: searchParams.get('utm_content') || '',
+            utm_campaign: searchParams.get('utm_campaign') || ''
+        });
+    }, []);
     const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -69,6 +83,9 @@ export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo, onRestar
             q4_impacto: getAnswerLabel('q4'),
             q5_urgencia: getAnswerLabel('q5'),
             q6_presupuesto: getAnswerLabel('q6'),
+            country_code: utmParams.country_code,
+            utm_content: utmParams.utm_content,
+            utm_campaign: utmParams.utm_campaign,
         };
 
         try {
@@ -108,6 +125,9 @@ export const LeadForm = ({ answers, totalScore, onComplete, onUserInfo, onRestar
 
 
             <form onSubmit={handleSubmit} className="space-y-4">
+                <input type="hidden" name="country_code" value={utmParams.country_code} />
+                <input type="hidden" name="utm_content" value={utmParams.utm_content} />
+                <input type="hidden" name="utm_campaign" value={utmParams.utm_campaign} />
                 <div>
                     <label className="block text-xs uppercase tracking-wider text-white/50 mb-1">Nombre</label>
                     <input
