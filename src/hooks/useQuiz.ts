@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { QUESTIONS, type ModuleType, type Option } from '../data/quizData';
 
+declare global {
+    interface Window {
+        dataLayer: any[];
+    }
+}
+
 export interface QuizState {
     currentStep: number;
     selectedModule: ModuleType;
@@ -46,7 +52,22 @@ export const useQuiz = () => {
         (q.moduleId === null || q.moduleId === state.selectedModule)
     );
 
+    const pushDataLayer = (stepName: string) => {
+        if (typeof window !== 'undefined') {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'avance_quiz',
+                'paso': stepName
+            });
+        }
+    };
+
     const handleAnswer = (option: Option) => {
+        // Track question completion
+        if (state.currentStep >= 1 && state.currentStep <= 6) {
+            pushDataLayer(`pregunta_${state.currentStep}_completada`);
+        }
+
         setState((prev) => {
             const newScore = prev.score + option.points;
             const newAnswers = { ...prev.answers, [currentQuestion?.id || '']: option.id };
@@ -76,6 +97,13 @@ export const useQuiz = () => {
     };
 
     const goToNextStep = () => {
+        // Detect specific transitions for DataLayer
+        if (state.currentStep === 0) {
+            pushDataLayer('inicio_diagnostico');
+        } else if (state.currentStep === 7) {
+            pushDataLayer('registro_completado');
+        }
+
         setState((prev) => ({
             ...prev,
             currentStep: prev.currentStep + 1,
