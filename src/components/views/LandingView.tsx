@@ -71,7 +71,7 @@ export const LandingView = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="space-y-4 md:space-y-6 -mt-10"
+                    className="space-y-4 md:space-y-6 -mt-24 md:-mt-10"
                 >
                     <h1 className="text-3xl md:text-[60px] font-bold font-display leading-[1.1] drop-shadow-2xl tracking-tight">
                         Deja de Navegar <span className="text-[var(--color-landing-accent)]">a la Deriva</span>
@@ -81,7 +81,7 @@ export const LandingView = () => {
                         Aquí tienes el Mapa Exacto para construir una marca imparable
                     </p>
 
-                    <div className="max-w-4xl mx-auto space-y-4 text-xs md:text-lg text-gray-300 leading-relaxed md:leading-relaxed backdrop-blur-sm bg-black/10 p-4 rounded-xl border border-white/5">
+                    <div className="max-w-4xl mx-auto space-y-4 text-sm md:text-lg text-gray-300 leading-relaxed md:leading-relaxed backdrop-blur-sm bg-black/10 p-4 rounded-xl border border-white/5">
                         <p>
                             ¿Lanzando una marca pero te sientes perdido en el inmenso océano digital? ¿Paralizado por no saber qué hacer primero: el logo, la web, el nombre? El 90% de los emprendedores se hunden antes de zarpar porque se enfocan en el 80% de las tareas que no generan resultados.
                         </p>
@@ -107,8 +107,8 @@ export const LandingView = () => {
                 <div className="absolute inset-0 w-full h-full bg-[url('/assets/landing/white-gray-background.svg')] bg-cover bg-center opacity-40 z-0"></div>
 
                 {/* FORM SECTION */}
-                <section id="lead-form" className="relative z-10 pt-16 pb-12 px-4">
-                    <div className="max-w-xl mx-auto relative filter drop-shadow-2xl">
+                <section id="lead-form" className="relative z-10 pt-16 pb-12 px-[3%]">
+                    <div className="w-full max-w-xl mx-auto relative filter drop-shadow-2xl">
                         {/* Main Card Container */}
                         <div className="bg-[#043345] rounded-t-2xl p-8 pt-10 border-t border-white/10 relative">
                             <div className="text-center mb-8">
@@ -158,9 +158,9 @@ export const LandingView = () => {
                                 <img src="/assets/landing/lines.svg" alt="Decoración" className="w-3/4 md:w-full max-w-[280px]" />
                             </div>
 
-                            <div className="mt-8 text-center text-xs text-gray-300 leading-tight font-light">
+                            <div className="mt-8 text-center text-sm text-gray-300 leading-tight font-light">
                                 <p className="font-bold mb-2 text-white text-base">100% gratuito. Te enviaremos la guía directamente a tu email para que empieces a construir hoy mismo.</p>
-                                <p className="opacity-60 text-[10px] leading-relaxed max-w-sm mx-auto">
+                                <p className="opacity-60 text-xs leading-relaxed max-w-sm mx-auto">
                                     Al registrarte, aceptas recibir comunicaciones por correo electrónico de nuestra parte, las cuales pueden ser enviadas mediante tecnología automatizada. Tu información es confidencial y no vendemos tus datos personales a terceros. Puedes darte de baja en cualquier momento haciendo clic en el enlace al final de nuestros correos. Al enviar este formulario, aceptas nuestra Política de Privacidad y Términos y Condiciones.
                                 </p>
                             </div>
@@ -172,7 +172,7 @@ export const LandingView = () => {
                 </section>
 
                 {/* PAIN POINTS SECTION */}
-                <section className="relative z-10 pt-8 pb-24 px-6 md:px-0">
+                <section className="relative z-10 pt-8 pb-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-[85%] lg:max-w-7xl mx-auto">
                         <h2 className="text-3xl md:text-[36px] font-bold font-display text-center mb-16 max-w-4xl mx-auto leading-tight text-[#043345]">
                             Construir una Marca No Debería Sentirse como <br />
@@ -213,7 +213,7 @@ export const LandingView = () => {
                                     <img
                                         src="/assets/landing/2-pain-point-graphic.webp"
                                         alt="Laberinto vs Claridad"
-                                        className="w-full h-auto rounded-2xl shadow-2xl border border-[#043345]/10 transition-all duration-500 hover:scale-[1.02]"
+                                        className="w-[90%] md:w-full h-auto rounded-2xl shadow-2xl border border-[#043345]/10 transition-all duration-500 hover:scale-[1.02] mx-auto"
                                     />
                                 </div>
                             </div>
@@ -237,7 +237,8 @@ export const LandingView = () => {
                 <div className="absolute inset-0 w-full h-full bg-[url('/assets/landing/Dark-BG.svg')] bg-cover bg-center opacity-100 z-0"></div>
 
                 {/* SOLUTION / VALUE PROP */}
-                <section className="relative z-10 py-24 px-6 md:px-0 overflow-hidden">
+                {/* SOLUTION / VALUE PROP */}
+                <section className="relative z-10 py-24 px-[3%] md:px-0 overflow-hidden">
                     <div className="max-w-[90%] md:max-w-[80%] lg:max-w-7xl mx-auto flex flex-col items-center">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-[36px] font-bold font-display text-white">
@@ -248,7 +249,7 @@ export const LandingView = () => {
                         <div className="grid md:grid-cols-2 gap-16 items-center w-full">
                             <div className="relative">
                                 <div className="absolute inset-0 bg-[#ff6600]/10 blur-[100px] rounded-full"></div>
-                                <img src="/assets/landing/3-mapa-catalejo.webp" alt="Tu Mapa" className="relative z-10 w-full rounded-2xl shadow-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/3-mapa-catalejo.webp" alt="Tu Mapa" className="relative z-10 w-[90%] md:w-full mx-auto rounded-2xl shadow-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
                             </div>
 
                             <div className="space-y-6">
@@ -284,7 +285,7 @@ export const LandingView = () => {
                 </section>
 
                 {/* NEW SECTION: COMMANDERS/CAPTAINS (Image 4) */}
-                <section className="relative z-10 py-24 px-6 md:px-0">
+                <section className="relative z-10 py-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-[80%] lg:max-w-7xl mx-auto">
                         <div className="text-center mb-24">
                             <h2 className="text-3xl md:text-[36px] font-bold font-display text-white">
@@ -337,14 +338,14 @@ export const LandingView = () => {
 
                             {/* Image Right (Image 4) */}
                             <div className="relative">
-                                <img src="/assets/landing/4-people-map.webp" alt="Capitanes" className="w-full h-auto rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/4-people-map.webp" alt="Capitanes" className="w-[90%] md:w-full mx-auto h-auto rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.02]" />
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* FINAL CTA SECTION (Image 5) */}
-                <section className="relative z-10 py-24 px-6 md:px-0">
+                <section className="relative z-10 py-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-[80%] lg:max-w-7xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-[36px] font-bold font-display text-white">
@@ -354,7 +355,7 @@ export const LandingView = () => {
 
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
-                                <img src="/assets/landing/5-mapa-barco.webp" alt="Playbook Interno" className="w-full h-auto drop-shadow-2xl rounded-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/5-mapa-barco.webp" alt="Playbook Interno" className="w-[90%] md:w-full mx-auto h-auto drop-shadow-2xl rounded-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
                             </div>
                             <div className="space-y-8 text-left">
                                 <div className="space-y-6 text-white text-lg leading-relaxed">
