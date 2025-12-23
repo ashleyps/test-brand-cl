@@ -43,12 +43,12 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
 
     // GTM Tracking Effect
     useEffect(() => {
-        if (window.dataLayer) {
-            window.dataLayer.push({
-                'event': 'avance_quiz',
-                'paso': showCalendar ? 'resultado_calificado' : 'resultado_no_calificado'
-            });
-        }
+        const dataLayer = (window as any).dataLayer || [];
+        dataLayer.push({
+            'event': 'avance_quiz',
+            'paso': showCalendar ? 'resultado_calificado' : 'resultado_no_calificado'
+        });
+        (window as any).dataLayer = dataLayer;
     }, [showCalendar]);
 
     // Initialize Cal.com logic

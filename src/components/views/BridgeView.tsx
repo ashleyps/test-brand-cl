@@ -5,18 +5,30 @@ export const BridgeView = () => {
 
     useEffect(() => {
         // GTM Event: Bridge Page View
-        if (window.dataLayer) {
-            window.dataLayer.push({
-                'event': 'view_bridge',
-                'paso': 'inicio_bridge'
-            });
-        }
+        const dataLayer = (window as any).dataLayer || [];
+        dataLayer.push({
+            'event': 'view_bridge',
+            'paso': 'inicio_bridge'
+        });
+        (window as any).dataLayer = dataLayer;
     }, []);
 
     const navigateToQuiz = () => {
+        // GTM Event: Start Diagnosis
+        const dataLayer = (window as any).dataLayer || [];
+        dataLayer.push({
+            'event': 'avance_quiz',
+            'paso': 'inicio_diagnostico'
+        });
+        (window as any).dataLayer = dataLayer;
+
         // Clear previous quiz state to ensure we start at Step 1 (fresh)
         localStorage.removeItem('quiz_state_v2');
-        window.location.href = '/test' + window.location.search; // Redirect to Quiz, preserving URL params
+
+        // Redirect with a slight delay
+        setTimeout(() => {
+            window.location.href = '/test' + window.location.search; // Redirect to Quiz, preserving URL params
+        }, 150);
     };
 
     // Timer Logic: 15 minutes countdown

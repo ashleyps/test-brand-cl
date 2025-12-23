@@ -25,16 +25,18 @@ export const LandingView = () => {
             localStorage.setItem('landing_lead', JSON.stringify(formData));
 
             // GTM Event: Lead Guide Downloaded
-            if (window.dataLayer) {
-                window.dataLayer.push({
-                    'event': 'lead_guia',
-                    'paso': 'guia_descargada'
-                });
-            }
+            const dataLayer = (window as any).dataLayer || [];
+            dataLayer.push({
+                'event': 'lead_guia',
+                'paso': 'guia_descargada'
+            });
+            (window as any).dataLayer = dataLayer;
 
-            // Navigate to the test
+            // Navigate to the test with a slight delay to ensure GTM event tracks
             // Preserve URL parameters (UTM, Country Code) for the next step
-            window.location.href = '/diagnostico-de-marca-personalizado' + window.location.search;
+            setTimeout(() => {
+                window.location.href = '/diagnostico-de-marca-personalizado' + window.location.search;
+            }, 150);
         }
     };
 
