@@ -5,12 +5,12 @@ export const BridgeView = () => {
 
     useEffect(() => {
         // GTM Event: Bridge Page View
-        const dataLayer = (window as any).dataLayer || [];
-        dataLayer.push({
-            'event': 'view_bridge',
-            'paso': 'inicio_bridge'
-        });
-        (window as any).dataLayer = dataLayer;
+        if ((window as any).dataLayer) {
+            (window as any).dataLayer.push({
+                'event': 'view_bridge',
+                'paso': 'inicio_bridge'
+            });
+        }
     }, []);
 
     const navigateToQuiz = () => {
