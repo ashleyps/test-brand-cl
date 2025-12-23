@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 import type { Question, Option } from '../../data/quizData';
 import { OptionButton } from '../ui/OptionButton';
@@ -11,6 +12,16 @@ interface QuestionViewProps {
 }
 
 export const QuestionView = ({ question, onAnswer, currentAnswer }: QuestionViewProps) => {
+
+    useEffect(() => {
+        // GTM Event: View Question
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+            'event': 'view_question',
+            'paso': `pregunta_${question.id}`
+        });
+    }, [question.id]);
+
     return (
         <motion.div
             className="w-full flex flex-col gap-2 md:gap-6 relative"
