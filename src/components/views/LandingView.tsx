@@ -33,9 +33,10 @@ export const LandingView = () => {
 
             // Navigate to the test with a slight delay to ensure GTM event tracks
             // Preserve URL parameters (UTM, Country Code) for the next step
+            console.log('GTM Event pushed: lead_guia. Waiting for redirect...');
             setTimeout(() => {
                 window.location.href = '/diagnostico-de-marca-personalizado' + window.location.search;
-            }, 150);
+            }, 2000);
         }
     };
 
