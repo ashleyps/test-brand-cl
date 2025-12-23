@@ -16,6 +16,13 @@ export const LandingView = () => {
             utm_content: searchParams.get('utm_content') || '',
             utm_campaign: searchParams.get('utm_campaign') || ''
         });
+
+        // GTM Event: Landing Visit
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+            'event': 'view_landing',
+            'paso': 'visita_landing_guia'
+        });
     }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
