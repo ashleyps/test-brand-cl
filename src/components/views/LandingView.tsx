@@ -75,7 +75,7 @@ export const LandingView = () => {
             </header>
 
             {/* HERO SECTION */}
-            <section className="relative z-10 pb-20 px-4 text-center max-w-5xl mx-auto flex flex-col justify-center min-h-[101vh]">
+            <section className="relative z-10 pb-10 md:pb-20 px-4 text-center max-w-5xl mx-auto flex flex-col justify-center min-h-[101vh]">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export const LandingView = () => {
                 <div className="absolute inset-0 w-full h-full bg-[url('/assets/landing/white-gray-background.svg')] bg-cover bg-center opacity-40 z-0"></div>
 
                 {/* FORM SECTION */}
-                <section id="lead-form" className="relative z-10 pt-16 pb-12 px-[3%]">
+                <section id="lead-form" className="relative z-10 pt-8 pb-8 md:pt-16 md:pb-12 px-[3%]">
                     <div className="w-full max-w-xl mx-auto relative filter drop-shadow-2xl">
                         {/* Main Card Container */}
                         <div className="bg-[#043345] rounded-t-2xl p-8 pt-10 border-t border-white/10 relative">
@@ -180,7 +180,7 @@ export const LandingView = () => {
                 </section>
 
                 {/* PAIN POINTS SECTION */}
-                <section className="relative z-10 pt-8 pb-24 px-[3%] md:px-0">
+                <section className="relative z-10 pt-8 pb-12 md:pb-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-[85%] lg:max-w-7xl mx-auto">
                         <h2 className="text-3xl md:text-[36px] font-bold font-display text-center mb-16 max-w-4xl mx-auto leading-tight text-[#043345]">
                             Construir una Marca No Debería Sentirse como <br />
@@ -221,7 +221,7 @@ export const LandingView = () => {
                                     <img
                                         src="/assets/landing/2-pain-point-graphic.webp"
                                         alt="Laberinto vs Claridad"
-                                        className="w-[90%] md:w-full h-auto rounded-2xl shadow-2xl border border-[#043345]/10 transition-all duration-500 hover:scale-[1.02] mx-auto"
+                                        className="w-full h-auto rounded-2xl shadow-2xl border border-[#043345]/10 transition-all duration-500 hover:scale-[1.02] mx-auto"
                                     />
                                 </div>
                             </div>
@@ -246,7 +246,7 @@ export const LandingView = () => {
 
                 {/* SOLUTION / VALUE PROP */}
                 {/* SOLUTION / VALUE PROP */}
-                <section className="relative z-10 py-24 px-[3%] md:px-0 overflow-hidden">
+                <section className="relative z-10 py-12 md:py-24 px-[3%] md:px-0 overflow-hidden">
                     <div className="max-w-[90%] md:max-w-[80%] lg:max-w-7xl mx-auto flex flex-col items-center">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-[36px] font-bold font-display text-white">
@@ -257,7 +257,7 @@ export const LandingView = () => {
                         <div className="grid md:grid-cols-2 gap-16 items-center w-full">
                             <div className="relative">
                                 <div className="absolute inset-0 bg-[#ff6600]/10 blur-[100px] rounded-full"></div>
-                                <img src="/assets/landing/3-mapa-catalejo.webp" alt="Tu Mapa" className="relative z-10 w-[90%] md:w-full mx-auto rounded-2xl shadow-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/3-mapa-catalejo.webp" alt="Tu Mapa" className="relative z-10 w-full mx-auto rounded-2xl shadow-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
                             </div>
 
                             <div className="space-y-6">
@@ -293,7 +293,7 @@ export const LandingView = () => {
                 </section>
 
                 {/* NEW SECTION: COMMANDERS/CAPTAINS (Image 4) */}
-                <section className="relative z-10 py-24 px-[3%] md:px-0">
+                <section className="relative z-10 py-12 md:py-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-[80%] lg:max-w-7xl mx-auto">
                         <div className="text-center mb-24">
                             <h2 className="text-3xl md:text-[36px] font-bold font-display text-white">
@@ -346,14 +346,14 @@ export const LandingView = () => {
 
                             {/* Image Right (Image 4) */}
                             <div className="relative">
-                                <img src="/assets/landing/4-people-map.webp" alt="Capitanes" className="w-[90%] md:w-full mx-auto h-auto rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/4-people-map.webp" alt="Capitanes" className="w-full mx-auto h-auto rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.02]" />
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* FINAL CTA SECTION (Image 5) */}
-                <section className="relative z-10 py-24 px-[3%] md:px-0">
+                <section className="relative z-10 py-12 md:py-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-[80%] lg:max-w-7xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-[36px] font-bold font-display text-white">
@@ -363,7 +363,7 @@ export const LandingView = () => {
 
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
-                                <img src="/assets/landing/5-mapa-barco.webp" alt="Playbook Interno" className="w-[90%] md:w-full mx-auto h-auto drop-shadow-2xl rounded-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/5-mapa-barco.webp" alt="Playbook Interno" className="w-full mx-auto h-auto drop-shadow-2xl rounded-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
                             </div>
                             <div className="space-y-8 text-left">
                                 <div className="space-y-6 text-white text-lg leading-relaxed">
