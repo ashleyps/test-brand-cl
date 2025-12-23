@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { QUESTIONS, type ModuleType, type Option } from '../data/quizData';
 
 declare global {
@@ -30,7 +30,7 @@ export const useQuiz = () => {
         }
 
         return {
-            currentStep: 0,
+            currentStep: 1,
             selectedModule: null,
             answers: {},
             score: 0,
@@ -62,7 +62,7 @@ export const useQuiz = () => {
         }
     };
 
-    const handleAnswer = (option: Option) => {
+    const handleAnswer = useCallback((option: Option) => {
         // Track question completion
         if (state.currentStep >= 1 && state.currentStep <= 6) {
             pushDataLayer(`pregunta_${state.currentStep}_completada`);
@@ -87,16 +87,21 @@ export const useQuiz = () => {
                 history: [...prev.history, currentQuestion?.id || ''],
             };
         });
-    };
+    }, [currentQuestion, state.currentStep]);
 
-    const setUserInfo = (name: string, email: string) => {
-        setState((prev) => ({
-            ...prev,
-            userInfo: { name, email },
-        }));
-    };
+    const setUserInfo = useCallback((name: string, email: string) => {
+        setState((prev) => {
+            if (prev.userInfo?.name === name && prev.userInfo?.email === email) {
+                return prev;
+            }
+            return {
+                ...prev,
+                userInfo: { name, email },
+            };
+        });
+    }, []);
 
-    const goToNextStep = () => {
+    const goToNextStep = useCallback(() => {
         // Detect specific transitions for DataLayer
         if (state.currentStep === 0) {
             pushDataLayer('inicio_diagnostico');
@@ -108,9 +113,9 @@ export const useQuiz = () => {
             ...prev,
             currentStep: prev.currentStep + 1,
         }));
-    };
+    }, [state.currentStep]);
 
-    const goBack = () => {
+    const goBack = useCallback(() => {
         setState((prev) => {
             if (prev.currentStep <= 0) return prev;
             return {
@@ -118,7 +123,7 @@ export const useQuiz = () => {
                 currentStep: prev.currentStep - 1
             }
         });
-    };
+    }, []);
 
     // --- Prevent accidental exit on Back Button ---
     useEffect(() => {
@@ -138,9 +143,9 @@ export const useQuiz = () => {
 
         window.addEventListener("popstate", handlePopState);
         return () => window.removeEventListener("popstate", handlePopState);
-    }, [state.currentStep]);
+    }, [state.currentStep, goBack]);
 
-    const resetQuiz = () => {
+    const resetQuiz = useCallback(() => {
         try {
             localStorage.removeItem(STORAGE_KEY);
         } catch (error) {
@@ -148,14 +153,14 @@ export const useQuiz = () => {
         }
 
         setState({
-            currentStep: 0,
+            currentStep: 1,
             selectedModule: null,
             answers: {},
             score: 0,
             history: [],
             userInfo: null,
         });
-    };
+    }, []);
 
     return {
         currentStep: state.currentStep,

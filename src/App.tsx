@@ -1,4 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 import { Layout } from './components/Layout';
 import { useQuiz } from './hooks/useQuiz';
 import { QuestionView } from './components/views/QuestionView';
@@ -7,15 +8,21 @@ import { LeadForm } from './components/views/LeadForm';
 import { ResultsView } from './components/views/ResultsView';
 import { ProgressBar } from './components/ui/ProgressBar';
 import { SuccessView } from './components/views/SuccessView';
+import { LandingView } from './components/views/LandingView';
 
+import { BridgeView } from './components/views/BridgeView';
 import { BookingView } from './components/views/BookingView';
+import { ThankYouView } from './components/views/ThankYouView';
 
 function App() {
   // Simple "Routing" check
   const path = window.location.pathname;
   // Check for various confirmation paths to be safe
-  const isSuccessPage = path === '/confirmacion' || path === '/muchas-gracias' || path.includes('confirmacion');
+  const isConfirmationPage = path === '/confirmacion' || path.includes('confirmacion');
+  const isThankYouPage = path === '/muchas-gracias';
   const isBookingPage = path === '/agendar' || path.includes('agendar');
+  const isBridgePage = path === '/diagnostico-personalizado' || path.includes('diagnostico-personalizado') || path.includes('diagnostico-de-marca-personalizado');
+  const isLandingPage = path === '/';
 
   const {
     currentStep,
@@ -30,10 +37,40 @@ function App() {
     goBack,
   } = useQuiz();
 
-  if (isSuccessPage) {
+  // Hydrate user info from Landing Page if we are in the quiz flow
+  useEffect(() => {
+    if (!isLandingPage && !userInfo) {
+      const storedLead = localStorage.getItem('landing_lead');
+      if (storedLead) {
+        try {
+          const { name, email } = JSON.parse(storedLead);
+          // Only update if we don't already have info (or overwrite? overwrite is safer to ensure consistency)
+          if (name && email) {
+            setUserInfo(name, email);
+          }
+        } catch (e) {
+          console.error("Failed to parse landing lead data", e);
+        }
+      }
+    }
+  }, [isLandingPage, setUserInfo, userInfo]);
+
+  if (isLandingPage) {
+    return <LandingView />;
+  }
+
+  if (isConfirmationPage) {
     return (
       <Layout maxWidth="max-w-2xl">
         <SuccessView />
+      </Layout>
+    );
+  }
+
+  if (isThankYouPage) {
+    return (
+      <Layout maxWidth="max-w-2xl">
+        <ThankYouView />
       </Layout>
     );
   }
@@ -44,6 +81,10 @@ function App() {
         <BookingView />
       </Layout>
     );
+  }
+
+  if (isBridgePage) {
+    return <BridgeView />;
   }
 
 
@@ -83,6 +124,7 @@ function App() {
             onComplete={goToNextStep}
             onUserInfo={setUserInfo}
             onRestart={resetQuiz}
+            initialUserInfo={userInfo}
           />
         )}
 

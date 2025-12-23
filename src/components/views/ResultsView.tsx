@@ -38,7 +38,7 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
     } else if (score <= 80) {
         tier = 'Navegante Comprometido';
     } else {
-        tier = 'Capitán Listo para Invertir';
+        tier = 'Capitán Listo para Triunfar';
     }
 
     // Initialize Cal.com logic
@@ -114,25 +114,23 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
 
     return (
         <motion.div
-            className="w-full text-center space-y-8"
+            className="w-full text-center space-y-6"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
         >
-            {/* Score & Tier Title: ONLY show for Low Score (<= 40) logic, or if we want to hide it completely for high score as requested */}
-            {!showCalendar && (
-                <div className="space-y-2">
-                    <h3 className="text-[var(--color-brand-teal)] text-xl uppercase tracking-widest font-bold">Tu Resultado</h3>
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-white">{tier}</h1>
-                    <div className="inline-block px-6 py-2 rounded-full bg-white/10 border border-white/20 mt-4">
-                        <span className="text-2xl font-bold text-[var(--color-brand-orange)]">{score}/100</span> <span className="text-sm opacity-70">Puntos</span>
-                    </div>
+            {/* Score & Tier Title: Show for EVERYONE */}
+            <div className="space-y-2">
+                <h3 className="text-[var(--color-brand-teal)] text-xl uppercase tracking-widest font-bold">Tu Resultado</h3>
+                <h1 className="text-4xl md:text-5xl font-extrabold text-white">{tier}</h1>
+                <div className="inline-block px-6 py-2 rounded-full bg-white/10 border border-white/20 mt-2">
+                    <span className="text-2xl font-bold text-[var(--color-brand-orange)]">{score}/100</span> <span className="text-sm opacity-70">Puntos</span>
                 </div>
-            )}
+            </div>
 
             {/* Main Content Area */}
             {showCalendar ? (
-                <div className="space-y-8 py-10">
+                <div className="space-y-6 py-4">
                     {/* High Score Header (replaces the Tier title) */}
                     <div>
                         <motion.div
@@ -191,16 +189,14 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
                     </motion.div>
 
 
-                    <motion.a
-                        href="https://drive.google.com/file/d/1T-Y_xSyvmRy4AghcUCwI0-9pnq-Cucoq/view"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <motion.button
+                        onClick={() => window.location.href = '/muchas-gracias'}
                         className="inline-block w-full md:w-auto px-8 py-4 bg-[var(--color-brand-orange)] text-white font-bold rounded-xl shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all text-lg"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        Descarga la 'Ruta de Navegación'
-                    </motion.a>
+                        ✅ Entendido, Finalizar
+                    </motion.button>
                 </>
             )}
 
