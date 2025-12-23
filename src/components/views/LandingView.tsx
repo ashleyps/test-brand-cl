@@ -25,7 +25,6 @@ export const LandingView = () => {
             localStorage.setItem('landing_lead', JSON.stringify(formData));
 
             // GTM Event: Lead Guide Downloaded
-            // GTM Event: Lead Guide Downloaded
             (window as any).dataLayer = (window as any).dataLayer || [];
             (window as any).dataLayer.push({
                 'event': 'lead_guia',
