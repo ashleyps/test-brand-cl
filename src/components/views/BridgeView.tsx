@@ -71,12 +71,12 @@ export const BridgeView = () => {
                             <img
                                 src="/assets/bridge/header-movil.webp"
                                 alt="Pack Mobile"
-                                className="block md:hidden relative z-10 w-full h-auto drop-shadow-2xl -mt-10"
+                                className="block md:hidden relative z-10 w-full h-auto drop-shadow-2xl -mt-[35px]"
                             />
                         </div>
 
                         {/* 2. TEXT CONTENT - Adjusted space for mobile */}
-                        <div className="text-center space-y-2 md:space-y-4 max-w-4xl mx-auto shrink-0 z-20 relative mt-6 md:-mt-[160px] px-4 md:px-0">
+                        <div className="text-center space-y-2 md:space-y-4 max-w-4xl mx-auto shrink-0 z-20 relative mt-[19px] md:-mt-[160px] px-4 md:px-0">
                             {/* Tagline */}
                             <div className="inline-block border-b border-[#ff6600]/80 pb-0.5 mb-1">
                                 <p className="text-base md:text-[22px] text-white font-medium tracking-wide">

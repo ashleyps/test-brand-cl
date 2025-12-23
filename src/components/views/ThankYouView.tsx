@@ -32,24 +32,30 @@ export const ThankYouView = () => {
                 </p>
 
                 <div className="bg-[var(--color-brand-teal-dark)]/50 rounded-xl p-6 border border-[var(--color-brand-teal)]/30">
-                    <h3 className="text-[var(--color-brand-orange)] font-bold uppercase tracking-wider text-sm mb-4">
-                        MIENTRAS ESPERAS:
+                    <h3 className="text-[var(--color-brand-orange)] font-bold uppercase tracking-wider text-sm mb-2">
+                        MIENTRAS TANTO:
                     </h3>
-                    <p className="text-white font-medium mb-6">
-                        Mientras llega el momento, mantente al día con contenido estratégico para tu marca:
+                    <p className="text-white font-medium">
+                        Revisa tu bandeja de entrada (y la de spam por si acaso) para asegurar que recibas el reporte sin problemas.
                     </p>
-
-                    <a
-                        href="https://instagram.com/capitanlogo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-brand-orange)] text-white hover:bg-orange-600 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,102,0,0.4)] gap-2 transform hover:scale-105 w-full md:w-auto"
-                    >
-                        <Instagram size={24} />
-                        Sígueme en Instagram
-                    </a>
                 </div>
             </div>
+
+            {/* Pre-button Text */}
+            <p className="text-white/80 mb-4 max-w-md mx-auto">
+                Mientras llega el momento, mantente al día con contenido estratégico para tu marca:
+            </p>
+
+            {/* CTA Button */}
+            <a
+                href="https://instagram.com/capitanlogo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[var(--color-brand-orange)] text-white hover:bg-orange-600 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,102,0,0.4)] mb-8 gap-2 transform hover:scale-105"
+            >
+                <Instagram size={24} />
+                Sígueme en Instagram
+            </a>
 
             {/* Developed By Promo */}
             <div className="mb-10 text-sm">
