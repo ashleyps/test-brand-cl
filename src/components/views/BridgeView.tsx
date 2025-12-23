@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const BridgeView = () => {
 
@@ -17,6 +17,22 @@ export const BridgeView = () => {
         // Clear previous quiz state to ensure we start at Step 1 (fresh)
         localStorage.removeItem('quiz_state_v2');
         window.location.href = '/test' + window.location.search; // Redirect to Quiz, preserving URL params
+    };
+
+    // Timer Logic: 15 minutes countdown
+    const [timeLeft, setTimeLeft] = useState(15 * 60);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const formatTime = (seconds: number) => {
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     };
 
     return (
@@ -55,7 +71,7 @@ export const BridgeView = () => {
                             <img
                                 src="/assets/bridge/header-movil.webp"
                                 alt="Pack Mobile"
-                                className="block md:hidden relative z-10 w-full h-auto drop-shadow-2xl -mt-24"
+                                className="block md:hidden relative z-10 w-full h-auto drop-shadow-2xl -mt-20"
                             />
                         </div>
 
@@ -244,7 +260,7 @@ export const BridgeView = () => {
                                         <div className="absolute inset-0 border-4 border-[#ff6600] rounded-full opacity-30"></div>
                                         <div className="absolute inset-0 border-4 border-[#ff6600] border-t-transparent rounded-full animate-spin-slow"></div>
                                         <div className="text-center">
-                                            <span className="block text-4xl md:text-5xl font-bold text-white font-mono leading-none mb-1">00:00</span>
+                                            <span className="block text-4xl md:text-5xl font-bold text-white font-mono leading-none mb-1">{formatTime(timeLeft)}</span>
                                             <span className="block text-[10px] md:text-xs text-[#ff6600] font-bold uppercase tracking-widest leading-tight">
                                                 Tiempo <br /> Agotándose
                                             </span>
