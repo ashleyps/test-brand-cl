@@ -384,7 +384,7 @@ export const LandingView = () => {
                                     </button>
                                 </div>
 
-                                <p className="text-lg text-white/80 italic">
+                                <p className="text-lg text-white/80 italic text-center">
                                     100% gratuito. Te enviaremos la guía directamente a tu email para que empieces a construir hoy mismo.
                                 </p>
                             </div>
