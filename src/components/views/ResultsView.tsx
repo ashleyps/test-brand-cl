@@ -41,6 +41,16 @@ export const ResultsView = ({ score, answers, userInfo, onRestart }: ResultsView
         tier = 'Capitán Listo para Triunfar';
     }
 
+    // GTM Tracking Effect
+    useEffect(() => {
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                'event': 'avance_quiz',
+                'paso': showCalendar ? 'resultado_calificado' : 'resultado_no_calificado'
+            });
+        }
+    }, [showCalendar]);
+
     // Initialize Cal.com logic
     useEffect(() => {
         if (!showCalendar) return;

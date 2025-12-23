@@ -1,6 +1,17 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 export const BridgeView = () => {
+
+    useEffect(() => {
+        // GTM Event: Bridge Page View
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                'event': 'view_bridge',
+                'paso': 'inicio_bridge'
+            });
+        }
+    }, []);
 
     const navigateToQuiz = () => {
         // Clear previous quiz state to ensure we start at Step 1 (fresh)

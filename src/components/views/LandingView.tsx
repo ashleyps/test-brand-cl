@@ -24,6 +24,14 @@ export const LandingView = () => {
             // Persist data for the quiz flow
             localStorage.setItem('landing_lead', JSON.stringify(formData));
 
+            // GTM Event: Lead Guide Downloaded
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    'event': 'lead_guia',
+                    'paso': 'guia_descargada'
+                });
+            }
+
             // Navigate to the test
             // Preserve URL parameters (UTM, Country Code) for the next step
             window.location.href = '/diagnostico-de-marca-personalizado' + window.location.search;
