@@ -53,7 +53,8 @@ export const useQuiz = () => {
     );
 
     const pushDataLayer = (stepName: string) => {
-        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        if (typeof window !== 'undefined') {
+            (window as any).dataLayer = (window as any).dataLayer || [];
             (window as any).dataLayer.push({
                 'event': 'avance_quiz',
                 'paso': stepName

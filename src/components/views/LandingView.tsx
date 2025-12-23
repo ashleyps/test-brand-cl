@@ -25,12 +25,12 @@ export const LandingView = () => {
             localStorage.setItem('landing_lead', JSON.stringify(formData));
 
             // GTM Event: Lead Guide Downloaded
-            if ((window as any).dataLayer) {
-                (window as any).dataLayer.push({
-                    'event': 'lead_guia',
-                    'paso': 'guia_descargada'
-                });
-            }
+            // GTM Event: Lead Guide Downloaded
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            (window as any).dataLayer.push({
+                'event': 'lead_guia',
+                'paso': 'guia_descargada'
+            });
 
             // Navigate to the test with a slight delay to ensure GTM event tracks
             // Preserve URL parameters (UTM, Country Code) for the next step

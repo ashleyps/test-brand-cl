@@ -5,22 +5,20 @@ export const BridgeView = () => {
 
     useEffect(() => {
         // GTM Event: Bridge Page View
-        if ((window as any).dataLayer) {
-            (window as any).dataLayer.push({
-                'event': 'view_bridge',
-                'paso': 'inicio_bridge'
-            });
-        }
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+            'event': 'view_bridge',
+            'paso': 'inicio_bridge'
+        });
     }, []);
 
     const navigateToQuiz = () => {
         // GTM Event: Start Diagnosis
-        if ((window as any).dataLayer) {
-            (window as any).dataLayer.push({
-                'event': 'avance_quiz',
-                'paso': 'inicio_diagnostico'
-            });
-        }
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+            'event': 'avance_quiz',
+            'paso': 'inicio_diagnostico'
+        });
 
         // Clear previous quiz state to ensure we start at Step 1 (fresh)
         localStorage.removeItem('quiz_state_v2');
