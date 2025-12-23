@@ -15,12 +15,12 @@ export const BridgeView = () => {
 
     const navigateToQuiz = () => {
         // GTM Event: Start Diagnosis
-        const dataLayer = (window as any).dataLayer || [];
-        dataLayer.push({
-            'event': 'avance_quiz',
-            'paso': 'inicio_diagnostico'
-        });
-        (window as any).dataLayer = dataLayer;
+        if ((window as any).dataLayer) {
+            (window as any).dataLayer.push({
+                'event': 'avance_quiz',
+                'paso': 'inicio_diagnostico'
+            });
+        }
 
         // Clear previous quiz state to ensure we start at Step 1 (fresh)
         localStorage.removeItem('quiz_state_v2');
