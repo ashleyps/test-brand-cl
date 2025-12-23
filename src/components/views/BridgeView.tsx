@@ -55,12 +55,12 @@ export const BridgeView = () => {
                             <img
                                 src="/assets/bridge/header-movil.webp"
                                 alt="Pack Mobile"
-                                className="block md:hidden relative z-10 w-full h-auto drop-shadow-2xl -mt-12"
+                                className="block md:hidden relative z-10 w-full h-auto drop-shadow-2xl -mt-24"
                             />
                         </div>
 
-                        {/* 2. TEXT CONTENT - Adjusted overlap for closer mobile spacing */}
-                        <div className="text-center space-y-2 md:space-y-4 max-w-4xl mx-auto shrink-0 z-20 relative -mt-12 md:-mt-[160px]">
+                        {/* 2. TEXT CONTENT - Adjusted space for mobile */}
+                        <div className="text-center space-y-2 md:space-y-4 max-w-4xl mx-auto shrink-0 z-20 relative mt-4 md:-mt-[160px]">
                             {/* Tagline */}
                             <div className="inline-block border-b border-[#ff6600]/80 pb-0.5 mb-1">
                                 <p className="text-base md:text-[22px] text-white font-medium tracking-wide">
@@ -99,7 +99,7 @@ export const BridgeView = () => {
 
             {/* BENEFITS SECTION */}
             <div className="relative z-20 bg-[#043345] w-full">
-                <section className="relative z-10 py-8 md:py-24 px-6 md:px-0">
+                <section className="relative z-10 py-12 md:py-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-[85%] lg:max-w-7xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-2xl md:text-[36px] font-bold font-display text-white leading-tight">
@@ -199,7 +199,7 @@ export const BridgeView = () => {
             <div className="relative z-20 bg-[#043345]">
 
 
-                <section className="relative z-10 py-8 md:py-24 px-6 md:px-0">
+                <section className="relative z-10 py-12 md:py-24 px-[3%] md:px-0">
                     <div className="max-w-[90%] md:max-w-4xl mx-auto">
 
                         {/* Alert Box Design */}
