@@ -33,7 +33,7 @@ export const BridgeView = () => {
                 </header>
 
                 {/* HERO CONTENT */}
-                <section className="flex-grow flex flex-col justify-center items-center px-4 md:px-0 w-full max-w-6xl mx-auto overflow-hidden">
+                <section className="flex-grow flex flex-col justify-center items-center md:px-0 w-full max-w-6xl mx-auto overflow-hidden">
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ export const BridgeView = () => {
                         </div>
 
                         {/* 2. TEXT CONTENT - Adjusted space for mobile */}
-                        <div className="text-center space-y-2 md:space-y-4 max-w-4xl mx-auto shrink-0 z-20 relative mt-4 md:-mt-[160px]">
+                        <div className="text-center space-y-2 md:space-y-4 max-w-4xl mx-auto shrink-0 z-20 relative mt-4 md:-mt-[160px] px-4 md:px-0">
                             {/* Tagline */}
                             <div className="inline-block border-b border-[#ff6600]/80 pb-0.5 mb-1">
                                 <p className="text-base md:text-[22px] text-white font-medium tracking-wide">
