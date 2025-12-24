@@ -230,6 +230,8 @@ export const LandingView = () => {
                                     <img
                                         src="/assets/landing/2-pain-point-graphic.webp"
                                         alt="Laberinto vs Claridad"
+                                        loading="lazy"
+                                        decoding="async"
                                         className="w-full h-auto rounded-2xl shadow-2xl border border-[#043345]/10 transition-all duration-500 hover:scale-[1.02] mx-auto"
                                     />
                                 </div>
@@ -239,7 +241,7 @@ export const LandingView = () => {
                         {/* Bottom Compass Note */}
                         <div className="mt-16 flex flex-col md:flex-row items-center gap-6 max-w-4xl mx-auto p-6 bg-orange-50/50 rounded-2xl border border-orange-100">
                             <div className="shrink-0 w-20 h-20 bg-white rounded-full p-2 shadow-md flex items-center justify-center">
-                                <img src="/assets/landing/brujula.svg" className="w-[60px] h-[60px] animate-spin-slow" alt="Compass" />
+                                <img src="/assets/landing/brujula.svg" className="w-[60px] h-[60px] animate-spin-slow" alt="Compass" loading="lazy" />
                             </div>
                             <p className="text-gray-700 text-sm md:text-base leading-relaxed font-medium">
                                 Esta no es otra guía teórica de 200 páginas. Es una <strong>Ruta de Navegación probada</strong>, un plan de acción 80/20 que te entrega el control y la claridad que necesitas para avanzar con confianza.
@@ -266,7 +268,7 @@ export const LandingView = () => {
                         <div className="grid md:grid-cols-2 gap-16 items-center w-full">
                             <div className="relative">
                                 <div className="absolute inset-0 bg-[#ff6600]/10 blur-[100px] rounded-full"></div>
-                                <img src="/assets/landing/3-mapa-catalejo.webp" alt="Tu Mapa" className="relative z-10 w-full mx-auto rounded-2xl shadow-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/3-mapa-catalejo.webp" alt="Tu Mapa" loading="lazy" decoding="async" className="relative z-10 w-full mx-auto rounded-2xl shadow-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
                             </div>
 
                             <div className="space-y-6">
@@ -355,7 +357,7 @@ export const LandingView = () => {
 
                             {/* Image Right (Image 4) */}
                             <div className="relative">
-                                <img src="/assets/landing/4-people-map.webp" alt="Capitanes" className="w-full mx-auto h-auto rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/4-people-map.webp" alt="Capitanes" loading="lazy" decoding="async" className="w-full mx-auto h-auto rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.02]" />
                             </div>
                         </div>
                     </div>
@@ -372,7 +374,7 @@ export const LandingView = () => {
 
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
-                                <img src="/assets/landing/5-mapa-barco.webp" alt="Playbook Interno" className="w-full mx-auto h-auto drop-shadow-2xl rounded-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
+                                <img src="/assets/landing/5-mapa-barco.webp" alt="Playbook Interno" loading="lazy" decoding="async" className="w-full mx-auto h-auto drop-shadow-2xl rounded-2xl border border-white/10 transition-all duration-500 hover:scale-[1.02]" />
                             </div>
                             <div className="space-y-8 text-left">
                                 <div className="space-y-6 text-white text-lg leading-relaxed">
