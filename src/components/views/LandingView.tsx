@@ -55,12 +55,13 @@ export const LandingView = () => {
         <div className="min-h-screen bg-[var(--color-landing-bg)] text-white font-sans overflow-x-hidden relative">
             {/* Hero Background - Parallax Effect */}
             <div className="absolute top-0 left-0 w-full h-[101vh] z-0 overflow-hidden">
-                {/* Background Image with Fixed Attachment */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
-                    style={{
-                        backgroundImage: 'url("/assets/landing/1-hero-illustration.webp")',
-                    }}
+                {/* Background Image with Fixed Attachment using IMG tag for LCP */}
+                <img
+                    src="/assets/landing/1-hero-illustration.webp"
+                    alt="Hero Background"
+                    fetchPriority="high"
+                    decoding="sync"
+                    className="absolute inset-0 w-full h-full object-cover object-center fixed-img-hack"
                 />
 
                 {/* Elementor Style Overlay: #043345 @ 50% */}
