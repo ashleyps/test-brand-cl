@@ -61,12 +61,12 @@ export const LandingView = () => {
                     alt="Hero Background"
                     fetchPriority="high"
                     decoding="sync"
-                    className="absolute inset-0 w-full h-full object-cover object-center fixed-img-hack"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
                 />
 
                 {/* Elementor Style Overlay: #043345 @ 50% */}
                 <div
-                    className="fixed inset-0 z-[1] w-full h-full"
+                    className="absolute inset-0 z-10 w-full h-full"
                     style={{
                         backgroundColor: '#043345',
                         opacity: 0.5
