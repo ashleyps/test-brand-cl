@@ -66,7 +66,7 @@ export const LandingView = () => {
 
                 {/* Elementor Style Overlay: #043345 @ 50% */}
                 <div
-                    className="absolute inset-0 z-10"
+                    className="fixed inset-0 z-[1] w-full h-full"
                     style={{
                         backgroundColor: '#043345',
                         opacity: 0.5
